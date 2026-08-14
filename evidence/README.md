@@ -22,7 +22,7 @@ As evidências do projeto estão estruturadas para comprovar os três momentos f
 
 | ID da Evidência | Controle Demonstrado | Tipo de Registro | Commit / Run | Responsável |
 | :--- | :--- | :--- | :--- | :--- |
-| `EVID-01` | Fundação e estrutura inicial | Logs do CI / PR #1 | *A registrar na ISSUE-01* | Samuel (P1) |
+| `EVID-01` | Fundação e estrutura inicial | PR e log do CI | [PR #13](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/13) / [workflow aprovado](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31809146741) — commit `78bfade` | Samuel (P1) |
 | `EVID-02` | Execução de testes automatizados | Relatório JUnit (`reports/junit.xml`) | *A vincular na ISSUE-03* | Elder (P2) |
 | `EVID-03` | Bloqueio por detecção de segredos | Log do Gitleaks (falha controlada) | *A vincular na ISSUE-05* | Manoel (P3) |
 | `EVID-04` | Auditoria de dependências | Relatório pip-audit e Ruff | *A vincular na ISSUE-06* | Manoel (P3) |
