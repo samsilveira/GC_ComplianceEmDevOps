@@ -201,15 +201,13 @@ As sete frentes propostas para o desenvolvimento são:
 
 | Frente | Responsabilidade principal | Entregas |
 | --- | --- | --- |
-| P1 | Fundação, integração e release | Repositório, workflow-base, integração e `v1.0.0` |
+| P1 | Repositório, CI, integração e entrega final | Fundação, workflow principal, integração de PRs e entrega final |
 | P2 | Aplicação e testes | API mínima, rotas `/` e `/health` e testes |
 | P3 | Segurança e dependências | Gitleaks, pip-audit, Ruff e relatório de segurança |
 | P4 | Políticas e auditoria | Políticas, script de validação, matriz e changelog |
 | P5 | Documentação e reprodução | Guias, referências e revisão da reprodutibilidade |
 | P6 | Evidências e demonstração | Registros das execuções, artefatos e roteiro prático |
-| P7 | Apresentação e qualidade | Revisão final, slides, ensaio e controle do tempo |
-
-Com exceção de P1, a associação das frentes aos integrantes ainda deverá ser confirmada pelo grupo.
+| P7 | Auditoria, release e apresentação | Auditoria final, apoio à release, slides e ensaio |
 
 ## Plano de execução
 
@@ -251,7 +249,6 @@ O projeto prioriza um experimento pequeno, funcional e demonstrável em 12 a 15 
 
 ## Referências iniciais
 
-- [Especificação do trabalho prático](Trabalho_Pratico-GC.pdf)
 - [GitHub Actions — documentação oficial](https://docs.github.com/actions)
 - [Flask — documentação oficial](https://flask.palletsprojects.com/)
 - [pytest — documentação oficial](https://docs.pytest.org/)

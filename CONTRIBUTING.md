@@ -10,7 +10,7 @@ Cada integrante possui um papel (`P1` a `P7`) com responsabilidades bem delimita
 
 | Papel | Integrante | GitHub | Frente Principal | Responsabilidade |
 | :--- | :--- | :--- | :--- | :--- |
-| **P1** | Samuel Wagner Tiburi Silveira | [@samsilveira](https://github.com/samsilveira) | Repositório, CI, integração e entrega final | Fundação, workflow principal, integrações de PRs e release |
+| **P1** | Samuel Wagner Tiburi Silveira | [@samsilveira](https://github.com/samsilveira) | Repositório, CI, integração e entrega final | Fundação, workflow principal, integrações de PRs e entrega final |
 | **P2** | Elder Rayan Oliveira Silva | [@eldrayan](https://github.com/eldrayan) | Aplicação e testes | API Flask (`app/`) e suíte de testes (`tests/`) |
 | **P3** | Manoel Junio Duarte da Silva | [@Junio404](https://github.com/Junio404) | Segurança e dependências | Gitleaks, pip-audit, Ruff e segurança de dependências |
 | **P4** | Sabrina Alencar Soares | [@sabrinaalencaar](https://github.com/sabrinaalencaar) | Políticas e auditoria | Políticas organizacionais, `scripts/check_policies.py` e matriz |
@@ -111,12 +111,22 @@ Uma issue ou Pull Request é considerada **pronta (Done)** quando atende integra
 
 - [ ] Código implementado de acordo com a descrição da issue.
 - [ ] Testes automatizados executados localmente com sucesso (quando aplicável).
-- [ ] Verificações de lint (`ruff`), segurança (`gitleaks`, `pip-audit`) e políticas (`check_policies.py`) aprovadas.
+- [ ] Todas as verificações previstas para a issue e já disponíveis na etapa atual do projeto foram aprovadas.
 - [ ] Documentação correspondente atualizada em `docs/` ou `README.md`.
 - [ ] Pipeline do GitHub Actions em estado **verde** (aprovado).
 - [ ] Revisão de código realizada e aprovada por pelo menos um dos revisores designados.
 - [ ] Nenhuma credencial, segredo ou arquivo proibido (`.env`) versionado.
 - [ ] Evidências de execução vinculadas ou catalogadas quando exigido pelo escopo da issue.
+
+### 5.1 Aplicação gradual da definição de pronto
+
+Os controles do pipeline entram em vigor de forma incremental, acompanhando suas issues de implementação:
+
+- **ISSUE-01 a ISSUE-04:** são obrigatórias apenas as verificações já disponíveis na etapa, começando pelo `foundation-check` e pelos testes adicionados posteriormente.
+- **ISSUE-05 a ISSUE-07:** cada novo controle torna-se obrigatório após a integração da respectiva issue: Gitleaks, Ruff, pip-audit e `check_policies.py`.
+- **A partir da ISSUE-08:** todos os controles do MVP devem estar ativos e aprovados.
+
+Uma issue anterior não depende retroativamente de uma ferramenta cuja implementação pertence a uma issue posterior. Isso evita dependência circular sem dispensar revisão, documentação ou pipeline verde com os controles disponíveis.
 
 ---
 
