@@ -8,15 +8,17 @@ O experimento utiliza uma API Python mínima como objeto de avaliação. A cada 
 
 ## Integrantes
 
-| Nome | GitHub | Contribuições resumidas |
-| --- | --- | --- |
-| Elder Rayan Oliveira Silva | [@eldrayan](https://github.com/eldrayan) | *A definir* |
-| Espedito Ramom Mascena Ricarto | [@RamomRicarto](https://github.com/RamomRicarto) | *A definir* |
-| Manoel Junio Duarte da Silva | [@Junio404](https://github.com/Junio404) | *A definir* |
-| Pedro Yan Alcantara Palácio | [@pedropalacioo](https://github.com/pedropalacioo) | *A definir* |
-| Sabrina Alencar Soares | [@sabrinaalencar](https://github.com/sabrinaalencar) | *A definir* |
-| Samuel Wagner Tiburi Silveira | [@samsilveira](https://github.com/samsilveira) | Fundação do repositório, pipeline-base, integração e release |
-| Sebastião Sousa Soares | [@SebastiaoSoares](https://github.com/SebastiaoSoares) | *A definir* |
+| Papel | Integrante | GitHub | Frente principal |
+| :--- | :--- | :--- | :--- |
+| **P1** | Samuel Wagner Tiburi Silveira | [@samsilveira](https://github.com/samsilveira) | Repositório, CI, integração e entrega final |
+| **P2** | Elder Rayan Oliveira Silva | [@eldrayan](https://github.com/eldrayan) | Aplicação e testes |
+| **P3** | Manoel Junio Duarte da Silva | [@Junio404](https://github.com/Junio404) | Segurança e dependências |
+| **P4** | Sabrina Alencar Soares | [@sabrinaalencaar](https://github.com/sabrinaalencaar) | Políticas e auditoria |
+| **P5** | Espedito Ramom Mascena Ricarto | [@RamomRicarto](https://github.com/RamomRicarto) | Documentação e reprodutibilidade |
+| **P6** | Pedro Yan Alcantara Palácio | [@pedropalacioo](https://github.com/pedropalacioo) | Coleta e organização de evidências de baixo risco |
+| **P7** | Sebastião Sousa Soares | [@SebastiaoSoares](https://github.com/SebastiaoSoares) | Auditoria, release e apresentação |
+
+Consulte o [Guia de Contribuição (CONTRIBUTING.md)](CONTRIBUTING.md) para detalhes sobre a governança, convenções de branches, commits e fluxo de pull requests.
 
 ## Objetivos do experimento
 
@@ -199,15 +201,13 @@ As sete frentes propostas para o desenvolvimento são:
 
 | Frente | Responsabilidade principal | Entregas |
 | --- | --- | --- |
-| P1 | Fundação, integração e release | Repositório, workflow-base, integração e `v1.0.0` |
+| P1 | Repositório, CI, integração e entrega final | Fundação, workflow principal, integração de PRs e entrega final |
 | P2 | Aplicação e testes | API mínima, rotas `/` e `/health` e testes |
 | P3 | Segurança e dependências | Gitleaks, pip-audit, Ruff e relatório de segurança |
 | P4 | Políticas e auditoria | Políticas, script de validação, matriz e changelog |
 | P5 | Documentação e reprodução | Guias, referências e revisão da reprodutibilidade |
 | P6 | Evidências e demonstração | Registros das execuções, artefatos e roteiro prático |
-| P7 | Apresentação e qualidade | Revisão final, slides, ensaio e controle do tempo |
-
-Com exceção de P1, a associação das frentes aos integrantes ainda deverá ser confirmada pelo grupo.
+| P7 | Auditoria, release e apresentação | Auditoria final, apoio à release, slides e ensaio |
 
 ## Plano de execução
 
@@ -235,9 +235,11 @@ O projeto prioriza um experimento pequeno, funcional e demonstrável em 12 a 15 
 ## Status do projeto
 
 - [x] Repositório e `.gitignore` iniciais
-- [x] README inicial
+- [x] README inicial e Guia de Contribuição (`CONTRIBUTING.md`)
+- [x] Estrutura de diretórios inicial e licença (`LICENSE`)
+- [x] Workflow-base no GitHub Actions (`.github/workflows/compliance.yml`)
 - [ ] Estrutura de aplicação e testes
-- [ ] Pipeline de conformidade
+- [ ] Pipeline completo de conformidade
 - [ ] Controles de segurança e dependências
 - [ ] Políticas como código
 - [ ] Documentação técnica completa
@@ -247,7 +249,6 @@ O projeto prioriza um experimento pequeno, funcional e demonstrável em 12 a 15 
 
 ## Referências iniciais
 
-- [Especificação do trabalho prático](Trabalho_Pratico-GC.pdf)
 - [GitHub Actions — documentação oficial](https://docs.github.com/actions)
 - [Flask — documentação oficial](https://flask.palletsprojects.com/)
 - [pytest — documentação oficial](https://docs.pytest.org/)

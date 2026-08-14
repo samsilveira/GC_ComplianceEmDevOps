@@ -1,0 +1,82 @@
+name: Compliance Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  foundation-check:
+    name: Verificação da Fundação do Repositório
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v5
+
+      - name: Validar arquivos e diretórios essenciais
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "=== Verificando arquivos da fundação ==="
+
+          required_files=(
+            ".gitignore"
+            ".github/pull_request_template.md"
+            ".github/workflows/compliance.yml"
+            "CONTRIBUTING.md"
+            "LICENSE"
+            "README.md"
+            "docs/01-visao-geral.md"
+            "docs/02-arquitetura.md"
+            "docs/03-ferramentas.md"
+            "docs/04-politicas.md"
+            "docs/05-como-executar.md"
+            "docs/06-evidencias.md"
+            "docs/07-auditoria.md"
+            "docs/08-referencias.md"
+            "evidence/README.md"
+            "policies/policy.md"
+          )
+
+          required_directories=(
+            ".github/workflows"
+            "app"
+            "docs"
+            "evidence"
+            "policies"
+            "scripts"
+            "tests"
+          )
+
+          failures=0
+
+          for file in "${required_files[@]}"; do
+            if [[ -f "$file" ]]; then
+              echo "✓ $file"
+            else
+              echo "✗ Arquivo ausente: $file"
+              failures=$((failures + 1))
+            fi
+          done
+
+          for directory in "${required_directories[@]}"; do
+            if [[ -d "$directory" ]]; then
+              echo "✓ $directory/"
+            else
+              echo "✗ Diretório ausente: $directory/"
+              failures=$((failures + 1))
+            fi
+          done
+
+          if (( failures > 0 )); then
+            echo "Fundação incompleta: $failures item(ns) ausente(s)."
+            exit 1
+          fi
+
+          echo "=== Fundação do repositório em conformidade inicial ==="
