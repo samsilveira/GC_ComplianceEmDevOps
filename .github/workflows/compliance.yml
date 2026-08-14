@@ -1,0 +1,30 @@
+name: Compliance Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  foundation-check:
+    name: Verificação da Fundação do Repositório
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validar arquivos essenciais do repositório
+        run: |
+          echo "=== Verificando arquivos da fundação ==="
+          test -f README.md && echo "✓ README.md encontrado" || (echo "✗ README.md ausente" && exit 1)
+          test -f LICENSE && echo "✓ LICENSE encontrada" || (echo "✗ LICENSE ausente" && exit 1)
+          test -f CONTRIBUTING.md && echo "✓ CONTRIBUTING.md encontrado" || (echo "✗ CONTRIBUTING.md ausente" && exit 1)
+          test -f .gitignore && echo "✓ .gitignore encontrado" || (echo "✗ .gitignore ausente" && exit 1)
+          echo "=== Fundação do repositório em conformidade inicial ==="
