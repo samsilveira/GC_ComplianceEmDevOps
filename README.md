@@ -170,6 +170,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+python -m pip install -r requirements-dev.txt
 ```
 
 No Windows PowerShell, ative o ambiente virtual com:
@@ -184,10 +185,15 @@ Para executar a aplicação:
 flask --app app.main run
 ```
 
-Os comandos abaixo serão habilitados quando suas respectivas issues forem integradas:
+Para executar os testes automatizados (o relatório JUnit será salvo em `reports/junit.xml`):
 
 ```sh
 pytest
+```
+
+Os comandos abaixo serão habilitados quando suas respectivas issues forem integradas:
+
+```sh
 ruff check .
 python scripts/check_policies.py
 ```
@@ -243,7 +249,7 @@ O projeto prioriza um experimento pequeno, funcional e demonstrável em 12 a 15 
 - [x] README inicial e Guia de Contribuição (`CONTRIBUTING.md`)
 - [x] Estrutura de diretórios inicial e licença (`LICENSE`)
 - [x] Workflow-base no GitHub Actions (`.github/workflows/compliance.yml`)
-- [ ] Estrutura de aplicação e testes
+- [x] Estrutura de aplicação e testes
 - [ ] Pipeline completo de conformidade
 - [ ] Controles de segurança e dependências
 - [ ] Políticas como código
