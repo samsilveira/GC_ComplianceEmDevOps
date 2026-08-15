@@ -103,7 +103,7 @@ As evidências serão organizadas em `evidence/` e também publicadas como artef
 - Acesso a um terminal
 - Conta no GitHub para consultar workflows, artefatos e releases
 
-As ferramentas do pipeline serão instaladas a partir de `requirements-dev.txt`, com exceção dos componentes executados diretamente pelo GitHub Actions.
+As dependências necessárias para executar a API são instaladas a partir de `requirements.txt`. O arquivo `requirements-dev.txt` será introduzido na ISSUE-03 com as dependências de teste e ampliado nas issues posteriores com as ferramentas de qualidade e segurança.
 
 ## Estrutura planejada
 
@@ -160,7 +160,7 @@ As ferramentas do pipeline serão instaladas a partir de `requirements-dev.txt`,
 
 ## Instalação e execução
 
-> **Estado atual:** o repositório está na fase de estruturação. Os comandos abaixo representam o contrato de execução do MVP e estarão funcionais após a implementação dos arquivos indicados na estrutura.
+> **Estado atual:** a API mínima pode ser instalada e iniciada com os comandos abaixo. As dependências e os comandos de testes, lint e políticas serão habilitados progressivamente nas respectivas issues.
 
 ```sh
 git clone https://github.com/samsilveira/GC_ComplianceEmDevOps.git
@@ -169,7 +169,7 @@ cd GC_ComplianceEmDevOps
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
-python -m pip install -r requirements-dev.txt
+python -m pip install -r requirements.txt
 ```
 
 No Windows PowerShell, ative o ambiente virtual com:
@@ -178,10 +178,15 @@ No Windows PowerShell, ative o ambiente virtual com:
 .venv\Scripts\Activate.ps1
 ```
 
-Para executar a aplicação, os testes e as políticas:
+Para executar a aplicação:
 
 ```sh
 flask --app app.main run
+```
+
+Os comandos abaixo serão habilitados quando suas respectivas issues forem integradas:
+
+```sh
 pytest
 ruff check .
 python scripts/check_policies.py
