@@ -38,16 +38,23 @@ python -m venv .venv
 ### 2.3 Instalar Dependências
 
 ```bash
-pip install --upgrade pip
-pip install -r requirements-dev.txt
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
-### 2.4 Executar Comandos de Validação
+O arquivo `requirements-dev.txt` será criado na ISSUE-03 para as dependências de teste e ampliado nas issues posteriores com as ferramentas de qualidade e segurança. Ele não é necessário para iniciar a API mínima entregue na ISSUE-02.
+
+### 2.4 Iniciar a API
 
 ```bash
-# Iniciar a API Flask (quando implementada na ISSUE-02)
 flask --app app.main run
+```
 
+### 2.5 Executar os Controles Posteriores
+
+Após a integração das respectivas issues, os demais controles poderão ser executados com:
+
+```bash
 # Executar suíte de testes (ISSUE-03)
 pytest
 

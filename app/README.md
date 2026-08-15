@@ -8,13 +8,23 @@ Esta aplicação foi desenvolvida com o objetivo exclusivo de servir como objeto
 - **Ausência de Autenticação/Autorização:** Não foram implementados controles de acesso, pois o foco não é a segurança da aplicação, mas a validação de código e dependências.
 - **Determinismo:** As respostas das rotas são totalmente determinísticas, permitindo que os testes unitários sejam rápidos e robustos, sem falsos positivos.
 
-## Inicialização
+## Instalação e Inicialização
 
-Para iniciar a aplicação, utilize:
+Para preparar e iniciar a aplicação a partir de um clone limpo, utilize:
 
 ```sh
+git clone https://github.com/samsilveira/GC_ComplianceEmDevOps.git
+cd GC_ComplianceEmDevOps
+
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+
 flask --app app.main run
 ```
+
+No Windows PowerShell, ative o ambiente virtual com `.venv\Scripts\Activate.ps1` antes de instalar as dependências.
 
 E para realizar requisições de teste localmente:
 
