@@ -40,9 +40,10 @@ python -m venv .venv
 ```bash
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+python -m pip install -r requirements-dev.txt
 ```
 
-O arquivo `requirements-dev.txt` será criado na ISSUE-03 para as dependências de teste e ampliado nas issues posteriores com as ferramentas de qualidade e segurança. Ele não é necessário para iniciar a API mínima entregue na ISSUE-02.
+`requirements.txt` contém as dependências da API. `requirements-dev.txt` contém o pytest e será ampliado nas issues posteriores com as ferramentas de qualidade e segurança.
 
 ### 2.4 Iniciar a API
 
@@ -50,14 +51,19 @@ O arquivo `requirements-dev.txt` será criado na ISSUE-03 para as dependências 
 flask --app app.main run
 ```
 
-### 2.5 Executar os Controles Posteriores
+### 2.5 Executar os Testes
+
+```bash
+pytest
+```
+
+Uma execução conforme termina com código de saída zero e cria o relatório JUnit em `reports/junit.xml`. O diretório `reports/` é ignorado pelo Git; a publicação do relatório como artefato do pipeline será configurada na ISSUE-04.
+
+### 2.6 Executar os Controles Posteriores
 
 Após a integração das respectivas issues, os demais controles poderão ser executados com:
 
 ```bash
-# Executar suíte de testes (ISSUE-03)
-pytest
-
 # Executar lint (ISSUE-06)
 ruff check .
 

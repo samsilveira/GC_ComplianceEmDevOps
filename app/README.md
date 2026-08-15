@@ -32,3 +32,14 @@ E para realizar requisições de teste localmente:
 curl http://127.0.0.1:5000/
 curl http://127.0.0.1:5000/health
 ```
+
+## Testes Automatizados
+
+Para instalar a dependência de teste e executar a suíte:
+
+```sh
+python -m pip install -r requirements-dev.txt
+pytest
+```
+
+O pytest cria o relatório JUnit em `reports/junit.xml`.
