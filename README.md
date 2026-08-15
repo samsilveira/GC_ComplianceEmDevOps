@@ -103,7 +103,7 @@ As evidências serão organizadas em `evidence/` e também publicadas como artef
 - Acesso a um terminal
 - Conta no GitHub para consultar workflows, artefatos e releases
 
-As dependências necessárias para executar a API são instaladas a partir de `requirements.txt`. O arquivo `requirements-dev.txt` será introduzido na ISSUE-03 com as dependências de teste e ampliado nas issues posteriores com as ferramentas de qualidade e segurança.
+As dependências necessárias para executar a API são instaladas a partir de `requirements.txt`. As dependências de teste estão em `requirements-dev.txt`, que será ampliado nas issues posteriores com as ferramentas de qualidade e segurança.
 
 ## Estrutura planejada
 
@@ -160,7 +160,7 @@ As dependências necessárias para executar a API são instaladas a partir de `r
 
 ## Instalação e execução
 
-> **Estado atual:** a API mínima pode ser instalada e iniciada com os comandos abaixo. As dependências e os comandos de testes, lint e políticas serão habilitados progressivamente nas respectivas issues.
+> **Estado atual:** a API mínima e a suíte de testes já podem ser executadas com os comandos abaixo. Os comandos de lint e políticas serão habilitados nas respectivas issues.
 
 ```sh
 git clone https://github.com/samsilveira/GC_ComplianceEmDevOps.git
@@ -170,6 +170,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+python -m pip install -r requirements-dev.txt
 ```
 
 No Windows PowerShell, ative o ambiente virtual com:
@@ -184,10 +185,15 @@ Para executar a aplicação:
 flask --app app.main run
 ```
 
-Os comandos abaixo serão habilitados quando suas respectivas issues forem integradas:
+Para executar os testes automatizados (o relatório JUnit será salvo em `reports/junit.xml`):
 
 ```sh
 pytest
+```
+
+Os comandos abaixo serão habilitados quando suas respectivas issues forem integradas:
+
+```sh
 ruff check .
 python scripts/check_policies.py
 ```
@@ -196,9 +202,9 @@ python scripts/check_policies.py
 
 1. Acesse a aba [Actions](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions) do repositório.
 2. Abra uma execução do workflow **Compliance Pipeline**.
-3. Verifique os resultados de testes, lint, scan de segredos, auditoria de dependências e políticas.
-4. Consulte ou baixe os artefatos gerados pela execução.
-5. Compare uma execução aprovada com a demonstração de violação documentada em `docs/06-evidencias.md`.
+3. No estágio atual, verifique o resultado de **Verificação da Fundação do Repositório**.
+4. A execução dos testes e a publicação do relatório JUnit no pipeline serão adicionadas na ISSUE-04.
+5. Os controles de lint, segredos, dependências e políticas serão incorporados incrementalmente nas issues posteriores.
 
 ## Organização do trabalho
 
@@ -243,7 +249,7 @@ O projeto prioriza um experimento pequeno, funcional e demonstrável em 12 a 15 
 - [x] README inicial e Guia de Contribuição (`CONTRIBUTING.md`)
 - [x] Estrutura de diretórios inicial e licença (`LICENSE`)
 - [x] Workflow-base no GitHub Actions (`.github/workflows/compliance.yml`)
-- [ ] Estrutura de aplicação e testes
+- [x] Estrutura de aplicação e testes
 - [ ] Pipeline completo de conformidade
 - [ ] Controles de segurança e dependências
 - [ ] Políticas como código
