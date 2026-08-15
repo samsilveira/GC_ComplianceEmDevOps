@@ -57,7 +57,7 @@ flask --app app.main run
 pytest
 ```
 
-Uma execução conforme termina com código de saída zero e cria o relatório JUnit em `reports/junit.xml`. O diretório `reports/` é ignorado pelo Git; a publicação do relatório como artefato do pipeline será configurada na ISSUE-04.
+Uma execução conforme termina com código de saída zero e cria o relatório JUnit em `reports/junit.xml`. O diretório `reports/` é ignorado pelo Git. No GitHub Actions, o workflow usa Python 3.12 como versão de referência e publica esse relatório como o artefato `relatorio-junit-<run-id>`.
 
 ### 2.6 Executar os Controles Posteriores
 

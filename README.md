@@ -99,7 +99,7 @@ As evidências serão organizadas em `evidence/` e também publicadas como artef
 ## Pré-requisitos e dependências
 
 - Git
-- Python 3 e `pip`
+- Python 3.10 ou superior e `pip` (o pipeline usa Python 3.12 como versão de referência)
 - Acesso a um terminal
 - Conta no GitHub para consultar workflows, artefatos e releases
 
@@ -202,8 +202,8 @@ python scripts/check_policies.py
 
 1. Acesse a aba [Actions](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions) do repositório.
 2. Abra uma execução do workflow **Compliance Pipeline**.
-3. No estágio atual, verifique o resultado de **Verificação da Fundação do Repositório**.
-4. A execução dos testes e a publicação do relatório JUnit no pipeline serão adicionadas na ISSUE-04.
+3. Verifique os jobs **Verificação da Fundação do Repositório** e **Testes Automatizados da API**.
+4. No job de testes, consulte o step **Executar testes e gerar relatório JUnit** e baixe o artefato `relatorio-junit-<run-id>` ao final da execução.
 5. Os controles de lint, segredos, dependências e políticas serão incorporados incrementalmente nas issues posteriores.
 
 ## Organização do trabalho
