@@ -24,7 +24,7 @@ As evidências do projeto estão estruturadas para comprovar os três momentos f
 | :--- | :--- | :--- | :--- | :--- |
 | `EVID-01` | Fundação e estrutura inicial | PR e log do CI | [PR #13](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/13) / [workflow aprovado](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31809146741) — commit `78bfade` | Samuel (P1) |
 | `EVID-02` | Execução de testes automatizados | Relatório JUnit e logs do CI | [Registro completo](EVID-02.md) / [execução verde](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31911702227) / [falha controlada](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31911672486) / [PR #15](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/15) / [PR #16](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/16) | Elder (P2) / Samuel (P1) |
-| `EVID-03` | Bloqueio por detecção de segredos | Log do Gitleaks (falha controlada) | *A vincular na ISSUE-05* | Manoel (P3) |
+| `EVID-03` | Bloqueio por detecção de segredos | Log e SARIF do Gitleaks | [Registro completo](EVID-03.md) / [execução vermelha](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31955024357) / [execução verde](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31955499109) / [PR #17](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/17) | Manoel (P3) |
 | `EVID-04` | Auditoria de dependências | Relatório pip-audit e Ruff | *A vincular na ISSUE-06* | Manoel (P3) |
 | `EVID-05` | Bloqueio por política interna | Log do `scripts/check_policies.py` | *A vincular na ISSUE-07* | Sabrina (P4) |
 | `EVID-06` | Trilha de auditoria e release | Tag `v1.0.0` e changelog | *A vincular na ISSUE-10* | Sabrina (P4) / Sebastião (P7) |

@@ -1,0 +1,15 @@
+title = "Configuracao Gitleaks do experimento de Compliance em DevOps"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "gc-demo-secret"
+description = "Segredo falso controlado para demonstracao segura da ISSUE-05"
+regex = '''GC_DEMO_SECRET\s*=\s*"(gc-demo-secret-[A-Z0-9]{12})"'''
+secretGroup = 1
+entropy = 0.0
+keywords = [
+  "GC_DEMO_SECRET",
+  "gc-demo-secret-",
+]

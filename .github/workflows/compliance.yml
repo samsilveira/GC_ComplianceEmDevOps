@@ -82,9 +82,29 @@ jobs:
 
           echo "=== Fundação do repositório em conformidade inicial ==="
 
+  secret-scan:
+    name: Varredura de Segredos
+    needs: foundation-check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Executar Gitleaks
+        uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_CONFIG: .gitleaks.toml
+          GITLEAKS_ENABLE_COMMENTS: "false"
+          GITLEAKS_ENABLE_SUMMARY: "true"
+          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: "true"
+
   api-tests:
     name: Testes Automatizados da API
-    needs: foundation-check
+    needs: secret-scan
     runs-on: ubuntu-latest
 
     steps:
