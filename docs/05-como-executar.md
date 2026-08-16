@@ -24,12 +24,14 @@ cd GC_ComplianceEmDevOps
 ### 2.2 Criar e Ativar o Ambiente Virtual
 
 No Linux/macOS:
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
 No Windows (PowerShell):
+
 ```powershell
 python -m venv .venv
 .venv\Scripts\Activate.ps1
@@ -78,6 +80,8 @@ Procedimento recomendado para a demonstracao controlada:
 3. Registre o SHA do commit e a URL da execucao em [`evidence/EVID-03.md`](../evidence/EVID-03.md).
 4. Remova o arquivo de demonstracao no commit seguinte e envie novamente o branch.
 5. Registre o SHA da correcao e a URL da nova execucao verde no mesmo arquivo de evidencia.
+
+Preserve os dois commits no historico do branch. Nao use `commit --amend` nem force push nessa demonstracao, pois a reescrita rompe a cadeia direta entre violacao, correcao e execucoes do pipeline.
 
 > **Importante:** nao use credenciais reais, nao use arquivos `.env` para a demonstracao e nao deixe o arquivo de violacao presente no estado final do branch.
 
