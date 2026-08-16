@@ -194,6 +194,7 @@ pytest
 Os comandos abaixo serão habilitados quando suas respectivas issues forem integradas:
 
 ```sh
+# O scan de segredos roda automaticamente no GitHub Actions (ISSUE-05)
 ruff check .
 python scripts/check_policies.py
 ```
@@ -202,9 +203,11 @@ python scripts/check_policies.py
 
 1. Acesse a aba [Actions](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions) do repositório.
 2. Abra uma execução do workflow **Compliance Pipeline**.
-3. Verifique os jobs **Verificação da Fundação do Repositório** e **Testes Automatizados da API**.
-4. No job de testes, consulte o step **Executar testes e gerar relatório JUnit** e baixe o artefato `relatorio-junit-<run-id>` ao final da execução.
-5. Os controles de lint, segredos, dependências e políticas serão incorporados incrementalmente nas issues posteriores.
+3. Verifique os jobs **Verificação da Fundação do Repositório**, **Varredura de Segredos** e **Testes Automatizados da API**.
+4. No job **Varredura de Segredos**, consulte o step **Executar Gitleaks** para confirmar que o scan rodou automaticamente.
+5. Em uma demonstração de falha controlada, baixe o artefato publicado pelo Gitleaks e vincule a execução em `evidence/EVID-03.md`.
+6. No job de testes, consulte o step **Executar testes e gerar relatório JUnit** e baixe o artefato `relatorio-junit-<run-id>` ao final da execução.
+7. Os controles de lint, dependências e políticas serão incorporados incrementalmente nas issues posteriores.
 
 ## Organização do trabalho
 
