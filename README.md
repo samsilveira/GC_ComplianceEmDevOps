@@ -103,7 +103,7 @@ As evidências serão organizadas em `evidence/` e também publicadas como artef
 - Acesso a um terminal
 - Conta no GitHub para consultar workflows, artefatos e releases
 
-As dependências necessárias para executar a API são instaladas a partir de `requirements.txt`. As dependências de teste estão em `requirements-dev.txt`, que será ampliado nas issues posteriores com as ferramentas de qualidade e segurança.
+As dependências necessárias para executar a API são instaladas a partir de `requirements.txt`. As ferramentas de desenvolvimento, qualidade e auditoria estão fixadas em `requirements-dev.txt`.
 
 ## Estrutura planejada
 
@@ -160,7 +160,7 @@ As dependências necessárias para executar a API são instaladas a partir de `r
 
 ## Instalação e execução
 
-> **Estado atual:** a API mínima e a suíte de testes já podem ser executadas com os comandos abaixo. Os comandos de lint e políticas serão habilitados nas respectivas issues.
+> **Estado atual:** a API mínima, a suíte de testes, o lint e a auditoria de dependências já podem ser executados com os comandos abaixo. A checagem de políticas será habilitada na respectiva issue.
 
 ```sh
 git clone https://github.com/samsilveira/GC_ComplianceEmDevOps.git
@@ -191,11 +191,16 @@ Para executar os testes automatizados (o relatório JUnit será salvo em `report
 pytest
 ```
 
-Os comandos abaixo serão habilitados quando suas respectivas issues forem integradas:
+Para executar os controles da ISSUE-06 localmente:
 
 ```sh
-# O scan de segredos roda automaticamente no GitHub Actions (ISSUE-05)
 ruff check .
+pip-audit --requirement requirements.txt --strict
+```
+
+O scan de segredos roda automaticamente no GitHub Actions. O comando abaixo será habilitado na ISSUE-07:
+
+```sh
 python scripts/check_policies.py
 ```
 
@@ -203,11 +208,12 @@ python scripts/check_policies.py
 
 1. Acesse a aba [Actions](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions) do repositório.
 2. Abra uma execução do workflow **Compliance Pipeline**.
-3. Verifique os jobs **Verificação da Fundação do Repositório**, **Varredura de Segredos** e **Testes Automatizados da API**.
+3. Verifique os jobs **Verificação da Fundação do Repositório**, **Varredura de Segredos**, **Qualidade de Código com Ruff**, **Auditoria de Dependências com pip-audit** e **Testes Automatizados da API**.
 4. No job **Varredura de Segredos**, consulte o step **Executar Gitleaks** para confirmar que o scan rodou automaticamente.
 5. Em uma demonstração de falha controlada, baixe o artefato publicado pelo Gitleaks e vincule a execução em `evidence/EVID-03.md`.
 6. No job de testes, consulte o step **Executar testes e gerar relatório JUnit** e baixe o artefato `relatorio-junit-<run-id>` ao final da execução.
-7. Os controles de lint, dependências e políticas serão incorporados incrementalmente nas issues posteriores.
+7. Baixe os artefatos `relatorio-ruff-<run-id>` e `relatorio-pip-audit-<run-id>` e confirme que os relatórios JSON correspondem ao mesmo identificador da execução.
+8. A validação de políticas será incorporada na ISSUE-07.
 
 ## Organização do trabalho
 
