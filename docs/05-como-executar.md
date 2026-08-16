@@ -45,7 +45,7 @@ python -m pip install -r requirements.txt
 python -m pip install -r requirements-dev.txt
 ```
 
-`requirements.txt` contém as dependências da API. `requirements-dev.txt` contém o pytest e será ampliado nas issues posteriores com as ferramentas de qualidade e segurança.
+`requirements.txt` contém as dependências de execução da API. `requirements-dev.txt` contém pytest, Ruff e pip-audit com versões fixadas.
 
 ### 2.4 Iniciar a API
 
@@ -85,14 +85,35 @@ Preserve os dois commits no historico do branch. Nao use `commit --amend` nem fo
 
 > **Importante:** nao use credenciais reais, nao use arquivos `.env` para a demonstracao e nao deixe o arquivo de violacao presente no estado final do branch.
 
-### 2.7 Executar os Controles Posteriores
+### 2.7 Executar Ruff e pip-audit
 
-Após a integração das respectivas issues, os demais controles poderão ser executados com:
+Execute os mesmos controles bloqueantes usados pelo GitHub Actions:
 
 ```bash
-# Executar lint (ISSUE-06)
 ruff check .
+pip-audit --requirement requirements.txt --strict
+```
 
-# Executar checagem de políticas (ISSUE-07)
+Uma execução conforme encerra ambos os comandos com código de saída zero. Para também preservar os resultados locais em JSON:
+
+```bash
+mkdir -p reports
+ruff check . --output-format=json --output-file=reports/ruff.json
+pip-audit --requirement requirements.txt --strict \
+  --format=json --output=reports/pip-audit.json
+```
+
+As violações das regras Ruff configuradas, as vulnerabilidades conhecidas e as falhas de coleta do pip-audit são bloqueantes. Nenhum código de saída é suprimido. Não existem exceções vigentes para a ISSUE-06.
+
+### 2.8 Executar os Controles Posteriores
+
+Após a integração da ISSUE-07, a checagem de políticas poderá ser executada com:
+
+```bash
+
 python scripts/check_policies.py
 ```
+
+### 2.9 Verificar os Artefatos no GitHub Actions
+
+No workflow **Compliance Pipeline**, verifique os jobs **Qualidade de Código com Ruff** e **Auditoria de Dependências com pip-audit**. Ao final de cada execução não cancelada, baixe os artefatos `relatorio-ruff-<run-id>` e `relatorio-pip-audit-<run-id>`, retidos por 14 dias.
