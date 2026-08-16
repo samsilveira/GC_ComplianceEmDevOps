@@ -29,7 +29,16 @@ Este registro relaciona os controles da ISSUE-06 às saídas preservadas pelo pi
 - **Merge na `main`:** [`e1a864f0f0f7238b82a72f1d05bc16287f0274c7`](https://github.com/samsilveira/GC_ComplianceEmDevOps/commit/e1a864f0f0f7238b82a72f1d05bc16287f0274c7)
 - **Retenção configurada:** 14 dias
 
-## 4. Exceções e Limitações
+## 4. Correção da Rastreabilidade após o Merge
+
+- **Pull request corretivo:** [#19](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/19)
+- **Branch corretiva:** `docs/corrige-evidencias-issue6`
+- **Commit corretivo avaliado:** [`67859574c2c500cb2e3777b0df7eab705475c14d`](https://github.com/samsilveira/GC_ComplianceEmDevOps/commit/67859574c2c500cb2e3777b0df7eab705475c14d)
+- **Execução verde do pull request corretivo:** [run `31970378390`](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31970378390), executado para o mesmo commit corretivo
+- **Artefatos publicados:** `relatorio-ruff-31970378390`, `relatorio-pip-audit-31970378390`, `relatorio-junit-31970378390` e `gitleaks-results.sarif`
+- **Escopo:** somente `evidence/EVID-04.md` e `evidence/README.md`; a implementação funcional validada no PR #18 não foi alterada.
+
+## 5. Exceções e Limitações
 
 - **Exceções vigentes em 16/08/2026:** nenhuma.
 - Não existem regras Ruff ignoradas por arquivo nem vulnerabilidades ignoradas com `--ignore-vuln`.
