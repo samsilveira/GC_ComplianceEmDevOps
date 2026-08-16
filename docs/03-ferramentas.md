@@ -16,12 +16,13 @@ Este documento justifica as tecnologias adotadas, suas vantagens e suas limitaç
 | **Python Script (`check_policies.py`)** | Políticas Internas | Validação de governança e arquivos obrigatórios | Customização total para políticas do projeto | Requer manutenção e testes próprios |
 | **GitHub Actions** | Orquestrador CI/CD | Execução automatizada e publicação de artefatos | Integração nativa com PRs, logs auditáveis | Limitações de runners públicos e quotas |
 
-## 2. Registro da Integracao do Gitleaks
+## 2. Registro da Integração do Gitleaks
 
-- **Versao adotada da integracao:** `gitleaks/gitleaks-action@v2.3.9`.
-- **Forma de integracao:** job `secret-scan` no workflow [`.github/workflows/compliance.yml`](../.github/workflows/compliance.yml), executado automaticamente em `push` e `pull_request` antes do job de testes.
-- **Configuracao versionada no repositorio:** [`.gitleaks.toml`](../.gitleaks.toml) com `useDefault = true`, preservando as regras padrao do Gitleaks e adicionando apenas a regra `gc-demo-secret` para a demonstracao segura da ISSUE-05.
-- **Saidas de auditoria:** resumo no job do GitHub Actions e upload do artefato de relatorio do Gitleaks quando houver deteccao.
+- **Versão adotada da integração:** `gitleaks/gitleaks-action@v3.0.0`, fixada no commit `e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e` para evitar alterações inesperadas em tags mutáveis.
+- **Runtime da action:** Node.js 24, sem habilitar runtimes depreciados no runner.
+- **Forma de integração:** job `secret-scan` no workflow [`.github/workflows/compliance.yml`](../.github/workflows/compliance.yml), executado automaticamente em `push` e `pull_request` antes do job de testes.
+- **Configuração versionada no repositório:** [`.gitleaks.toml`](../.gitleaks.toml) com `useDefault = true`, preservando as regras padrão do Gitleaks e adicionando apenas a regra `gc-demo-secret` para a demonstração segura da ISSUE-05.
+- **Saídas de auditoria:** resumo no job do GitHub Actions e upload do artefato de relatório do Gitleaks quando houver detecção.
 
 ## 3. Falsos Positivos, Excecoes e Limitacoes
 
@@ -51,3 +52,7 @@ Este documento justifica as tecnologias adotadas, suas vantagens e suas limitaç
 - O resultado representa a base de vulnerabilidades disponível no momento da execucao e nao garante ausencia de falhas ainda desconhecidas ou ainda nao publicadas.
 - A auditoria depende de conectividade com o indice e com o servico de vulnerabilidades. Como `--strict` está ativo, indisponibilidade que impeça a coleta nao produz aprovacao silenciosa.
 - Dependencias de desenvolvimento nao fazem parte da politica POL-04; o arquivo auditado é explicitamente `requirements.txt`, que representa as dependencias de execucao da API.
+- **Falsos positivos:** o Gitleaks trabalha com regras baseadas em padrões e entropia, portanto strings sintéticas ou fixtures de teste podem ser sinalizadas se se parecerem com credenciais reais.
+- **Exceções nesta issue:** nenhuma allowlist ou `.gitleaksignore` foi adicionada, para evitar mascarar vazamentos durante a demonstração da política.
+- **Tratamento recomendado para exceções futuras:** qualquer falso positivo deve ser revisado manualmente e, se confirmado, documentado com justificativa antes de incluir uma exclusão versionada.
+- **Cobertura:** `fetch-depth: 0` disponibiliza o histórico ao runner, enquanto a action seleciona o intervalo de commits de acordo com o evento (`push` ou `pull_request`). Essa configuração verifica as alterações selecionadas pela action, mas não deve ser apresentada como uma auditoria periódica de todo o histórico nem como proteção para segredos injetados apenas em runtime fora do Git.
