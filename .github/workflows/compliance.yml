@@ -82,6 +82,23 @@ jobs:
 
           echo "=== Fundação do repositório em conformidade inicial ==="
 
+  policy-check:
+    name: Verificação de Políticas do Repositório
+    needs: foundation-check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v7
+
+      - name: Configurar Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v7
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Executar script de políticas
+        run: python scripts/check_policies.py
+
   secret-scan:
     name: Varredura de Segredos
     needs: foundation-check
