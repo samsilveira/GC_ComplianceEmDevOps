@@ -1,35 +1,64 @@
-# Trilha de Evidências — Compliance em DevOps
+# Trilha de evidências — Compliance em DevOps
 
-Este diretório é o índice central e o repositório de evidências auditáveis geradas durante a execução do experimento de Compliance as Code em Pipelines CI/CD.
+Este é o índice central da trilha auditável. Ele permite localizar as evidências
+pelos três momentos da demonstração, pelo controle ou pela execução do GitHub
+Actions. Os registros catalogam somente material já produzido nas issues
+anteriores; não contêm tokens, credenciais reais ou dados pessoais.
 
----
+## Roteiro navegável dos três momentos
 
-## 📂 Organização das Evidências
+| Momento | Estado demonstrado | Evidência principal | Commit | Execução e data |
+| --- | --- | --- | --- | --- |
+| 1 — Aprovação | Pipeline-base aprovado | [EVID-01](EVID-01.md) | `78bfade` | [run 31809146741](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31809146741), 14/08/2026 |
+| 2A — Violação | Segredo exclusivamente sintético bloqueado pelo Gitleaks | [EVID-03](EVID-03.md) | `c50e11520b66d3bd3ba5ae1ca7f014c3cff62145` | [run 31955024357](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31955024357), 15/08/2026 |
+| 2B — Violação | Arquivo `.env` vazio bloqueado pela política interna | [EVID-05](EVID-05.md) | `24b6903dc67d4896d048dc3f0b8862680df4539f` | [run 32040521363](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/32040521363), 17/08/2026 |
+| 3 — Correção | Todas as correções integradas e pipeline novamente aprovado | [EVID-05](EVID-05.md) e [contingência](contingency/README.md) | `fd7f8997824ce32fe050757fcbc0392445d487ba` | [run 32041545903](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/32041545903), 17/08/2026 |
 
-As evidências do projeto estão estruturadas para comprovar os três momentos fundamentais do experimento:
+## Catálogo por controle
 
-1. **Momento 1 — Pipeline Conforme (Aprovado):**
-   - Execução completa com testes passando, lint validado, sem segredos e dependências auditadas.
-2. **Momento 2 — Bloqueio por Violação Controlada:**
-   - Detecção de segredo fictício com Gitleaks.
-   - Violação de políticas com `check_policies.py`.
-3. **Momento 3 — Aprovação após Correção:**
-   - Remoção das violações e restauração do pipeline em estado verde.
+| ID | Controle demonstrado | Relatórios ou registros | Origem |
+| --- | --- | --- | --- |
+| `EVID-01` | Fundação e pipeline-base | Log do CI | [PR #13](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/13) e [run 31809146741](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31809146741) |
+| `EVID-02` | Testes automatizados | JUnit e logs do CI | [registro](EVID-02.md), [PR #15](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/15) e [PR #16](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/16) |
+| `EVID-03` | Detecção de segredos | SARIF redigido e logs do Gitleaks | [registro](EVID-03.md) e [PR #17](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/17) |
+| `EVID-04` | Qualidade e dependências | JSON do Ruff, pip-audit e JUnit | [registro](EVID-04.md), [PR #18](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/18) e [PR #19](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/19) |
+| `EVID-05` | Política interna | Logs do `check_policies.py` | [registro](EVID-05.md) e [PR #20](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/20) |
 
----
+O [mapeamento entre políticas e evidências](POLICY-MAP.md) explicita qual
+controle cada registro comprova. O [material de contingência](contingency/README.md)
+preserva um roteiro autocontido caso os logs ou artefatos temporários do GitHub
+Actions estejam indisponíveis durante a apresentação.
 
-## 📋 Catálogo de Artefatos e Execuções
+## Convenção de nomes
 
-| ID da Evidência | Controle Demonstrado | Tipo de Registro | Commit / Run | Responsável |
-| :--- | :--- | :--- | :--- | :--- |
-| `EVID-01` | Fundação e estrutura inicial | PR e log do CI | [PR #13](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/13) / [workflow aprovado](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31809146741) — commit `78bfade` | Samuel (P1) |
-| `EVID-02` | Execução de testes automatizados | Relatório JUnit e logs do CI | [Registro completo](EVID-02.md) / [execução verde](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31911702227) / [falha controlada](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31911672486) / [PR #15](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/15) / [PR #16](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/16) | Elder (P2) / Samuel (P1) |
-| `EVID-03` | Bloqueio por detecção de segredos | Log e SARIF do Gitleaks | [Registro completo](EVID-03.md) / [execução vermelha](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31955024357) / [execução verde](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31955499109) / [PR #17](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/17) | Manoel (P3) |
-| `EVID-04` | Qualidade e auditoria de dependências | Relatórios JSON do Ruff e pip-audit | [Registro completo](EVID-04.md) / [PR #18](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/18) e [run da implementação](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31968978387) — commit `13fea95` / [PR corretivo #19](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/19) e [run corretivo](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31970378390) — commit `6785957` | Manoel (P3) |
-| `EVID-05` | Bloqueio por política interna | Log do `scripts/check_policies.py` | [Registro completo](EVID-05.md) / [falha controlada](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/32040521363) / [restauração verde](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/32041545903) / [PR #20](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/20) | Sabrina |
-| `EVID-06` | Trilha de auditoria e release | Tag `v1.0.0` e changelog | *A vincular na ISSUE-10* | Sabrina (P4) / Sebastião (P7) |
+- Registro Markdown: `EVID-NN.md`.
+- Relatório preservado: `EVID-NN_<controle>_<run-id>.<ext>`.
+- Captura: `EVID-NN_<momento>_<run-id>_NN.<ext>`.
+- Vídeo: `DEMO_YYYY-MM-DD_<versao>.mp4`.
+- Artefato do workflow: `<tipo>-<run-id>`, mantendo os nomes já publicados,
+  como `relatorio-junit-31911702227` e `gitleaks-results.sarif`.
 
----
+Use identificadores em maiúsculas apenas para `EVID` e `DEMO`, termos em
+minúsculas ASCII separados por hífen ou sublinhado conforme os modelos acima,
+e nunca inclua nome de pessoa, e-mail, token ou outro dado sensível no arquivo.
 
-> [!NOTE]
-> A catalogação e manutenção detalhada deste índice é atribuição da **ISSUE-08** conduzida por Pedro Yan (P6) sob supervisão técnica de Samuel (P1).
+## Integridade, retenção e revisão
+
+- Os artefatos do Actions têm retenção limitada; os registros Markdown guardam
+  commit, run, data, controle e resultado necessários para a apresentação.
+- Antes de publicar uma nova cópia, o responsável técnico deve revisar o
+  conteúdo, redigir valores e registrar a aprovação no PR correspondente.
+- A revisão técnica do Gitleaks, Ruff e pip-audit está vinculada aos PRs #17,
+  #18 e #19, sob responsabilidade de Manoel. A correspondência das políticas
+  está vinculada ao PR #20, sob responsabilidade de Sabrina.
+- Links externos requerem acesso ao GitHub. Os documentos relativos e o roteiro
+  de contingência permanecem navegáveis diretamente no repositório.
+
+## Limite da ISSUE-08
+
+Esta catalogação não altera workflow, gerador de evidências, controles de
+segurança ou políticas. A publicação e a validação de ausência dos artefatos já
+estão implementadas no workflow herdado: Ruff e pip-audit usam
+`if-no-files-found: error`; o JUnit usa `warn`, decisão anterior a esta issue.
+Qualquer mudança funcional deve ser feita pelo responsável técnico em outra
+issue e novamente aprovada antes de ser catalogada aqui.

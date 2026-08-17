@@ -1,0 +1,44 @@
+# Capturas documentais de contingência
+
+Estes cartões preservam os dados que devem aparecer na demonstração. Eles
+substituem a navegação ao vivo quando o GitHub Actions ou seus artefatos
+temporários não estiverem disponíveis. Não substituem os runs como fonte
+primária; cada cartão aponta para a origem auditável.
+
+## Momento 1 — aprovação inicial
+
+> **APROVADO** · run `31809146741` · commit `78bfade` · 14/08/2026  
+> Controle: fundação e pipeline-base em estado verde.  
+> Origem: [EVID-01](../EVID-01.md) · [GitHub Actions](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31809146741)
+
+## Momento 2A — bloqueio de segredo sintético
+
+> **BLOQUEADO** · run `31955024357` · commit `c50e11520b66d3bd3ba5ae1ca7f014c3cff62145` · 15/08/2026  
+> Controle: Gitleaks, regra `gc-demo-secret`; valores redigidos e nenhuma credencial real.  
+> Resultado: job de segredos falhou com saída não zero.  
+> Origem: [EVID-03](../EVID-03.md) · [GitHub Actions](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31955024357)
+
+## Momento 2B — bloqueio por política
+
+> **BLOQUEADO** · run `32040521363` · commit `24b6903dc67d4896d048dc3f0b8862680df4539f` · 17/08/2026  
+> Controle: `POL-05`; um arquivo `.env` vazio foi usado, sem segredo.  
+> Resultado: `check_policies.py` detectou o nome proibido e encerrou com código 1.  
+> Origem: [EVID-05](../EVID-05.md) · [GitHub Actions](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/32040521363)
+
+## Momento 3 — aprovação após correção
+
+> **APROVADO** · run `32041545903` · commit `fd7f8997824ce32fe050757fcbc0392445d487ba` · 17/08/2026  
+> Controle: `POL-05`; o arquivo proibido foi removido.  
+> Resultado: verificação de políticas concluída e pipeline restaurado.  
+> Origem: [EVID-05](../EVID-05.md) · [GitHub Actions](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/32041545903)
+
+## Roteiro curto
+
+1. Mostre o Momento 1 como baseline aprovado.
+2. Compare com os Momentos 2A e 2B e destaque o controle que bloqueou cada run.
+3. Termine no Momento 3, relacionando remoção, novo commit e novo run verde.
+4. Retorne ao [índice](../README.md) para mostrar a navegação por controle.
+
+Os cartões não reproduzem logs nem valores detectados, evitando a exposição de
+conteúdo sensível. Antes da apresentação, confirme os links; se o acesso remoto
+falhar, todo o roteiro continua disponível por links relativos.
