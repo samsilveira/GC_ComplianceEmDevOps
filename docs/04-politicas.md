@@ -14,8 +14,8 @@ Este documento formaliza as políticas de conformidade do experimento e sua resp
 | **POL-02** | Proibido comitar segredos, chaves de API e arquivos `.env` | `gitleaks` + `check_policies.py` | Log de scan no CI | Sim |
 | **POL-03** | Código deve atender às regras de lint configuradas | `ruff check .` | `reports/ruff.json` | Sim |
 | **POL-04** | Dependências em produção não podem ter vulnerabilidades conhecidas | `pip-audit --requirement requirements.txt --strict` | `reports/pip-audit.json` | Sim |
-| **POL-05** | Repositório deve conter documentação e governança obrigatória | `scripts/check_policies.py` | Log do script de políticas | Sim |
-| **POL-06** | Toda release oficial deve ter tag semântica, notas e changelog | GitHub Releases + `CHANGELOG.md` | Tag `v1.0.0` e release note | Sim |
+| **POL-05** | Repositório deve conter documentação e governança obrigatória | `scripts/check_policies.py` + check obrigatório no ruleset `main-protect` | [EVID-05](../evidence/EVID-05.md) + log do job | Sim |
+| **POL-06** | Toda release oficial deve ter tag semântica, notas e changelog | Revisão humana de GitHub Releases + `CHANGELOG.md`; automação prevista na ISSUE-10 | `EVID-06`, a produzir na ISSUE-10 | Não nesta etapa |
 
 ---
 
@@ -31,9 +31,10 @@ Para garantir eficiência sem perder o controle de qualidade, nossas políticas 
 ### O que depende de Revisão Humana (Controles Administrativos)
 - **Aprovação de Pull Requests:** Nenhuma alteração entra na branch `main` (produção) sem a revisão e aprovação (Code Review) da equipe.
 - **Decisões de Arquitetura e Modelagem:** Inclusão de novas ferramentas, aplicação de princípios arquiteturais (como SOLID) ou mudanças em esquemas de banco de dados (como modelagem no SQLite).
+- **Governança de Releases:** Até a implementação da ISSUE-10, a equipe revisa manualmente a tag semântica, as notas da release e o `CHANGELOG.md`.
 - **Tratamento de Falsos Positivos:** Avaliação humana quando as ferramentas de segurança ou qualidade barrarem código seguro por engano.
 
 ---
 
 > [!NOTE]
-> O detalhamento completo e a implementação do script validador são conduzidos na **ISSUE-07** sob responsabilidade de Sabrina Alencar.
+> O detalhamento e a implementação do script validador são conduzidos na **ISSUE-07** sob responsabilidade de Sabrina Alencar (P4).
