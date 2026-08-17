@@ -1,5 +1,7 @@
 # 04 — Políticas Organizacionais e Matriz de Controles
 
+> **Aviso Legal:** Este documento e os controles aqui descritos têm fins puramente acadêmicos e experimentais. Nenhuma afirmação contida neste repositório sugere ou garante conformidade integral com normas legais reais (como LGPD, GDPR) ou certificações de mercado (como ISO 27001, SOC 2).
+
 Este documento formaliza as políticas de conformidade do experimento e sua respectiva correspondência com controles automatizados e evidências.
 
 ---
@@ -17,5 +19,21 @@ Este documento formaliza as políticas de conformidade do experimento e sua resp
 
 ---
 
+## 2. Automação vs. Revisão Humana
+
+Para garantir eficiência sem perder o controle de qualidade, nossas políticas são divididas em processos automatizados e manuais.
+
+### O que é Automatizado (Controles Técnicos)
+- **Verificação de Estrutura:** Validação da presença da fundação do repositório e arquivos essenciais (como `README.md` e `CHANGELOG.md`) pelo script customizado.
+- **Auditoria de Código e Dependências:** Execução do Ruff e do pip-audit a cada novo commit via GitHub Actions.
+- **Prevenção de Vazamentos:** Varredura do Gitleaks e script de bloqueio de arquivos proibidos para evitar exposição acidental de credenciais.
+
+### O que depende de Revisão Humana (Controles Administrativos)
+- **Aprovação de Pull Requests:** Nenhuma alteração entra na branch `main` (produção) sem a revisão e aprovação (Code Review) da equipe.
+- **Decisões de Arquitetura e Modelagem:** Inclusão de novas ferramentas, aplicação de princípios arquiteturais (como SOLID) ou mudanças em esquemas de banco de dados (como modelagem no SQLite).
+- **Tratamento de Falsos Positivos:** Avaliação humana quando as ferramentas de segurança ou qualidade barrarem código seguro por engano.
+
+---
+
 > [!NOTE]
-> O detalhamento completo e a implementação do script validador são conduzidos na **ISSUE-07** sob responsabilidade de Sabrina Alencar (P4).
+> O detalhamento completo e a implementação do script validador são conduzidos na **ISSUE-07** sob responsabilidade de Sabrina Alencar.
