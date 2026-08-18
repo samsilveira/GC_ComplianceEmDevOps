@@ -36,6 +36,8 @@ Este registro relaciona os controles da ISSUE-06 às saídas preservadas pelo pi
 - **Commit corretivo avaliado:** [`67859574c2c500cb2e3777b0df7eab705475c14d`](https://github.com/samsilveira/GC_ComplianceEmDevOps/commit/67859574c2c500cb2e3777b0df7eab705475c14d)
 - **Execução verde do pull request corretivo:** [run `31970378390`](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31970378390), executado para o mesmo commit corretivo
 - **Artefatos publicados:** `relatorio-ruff-31970378390`, `relatorio-pip-audit-31970378390`, `relatorio-junit-31970378390` e `gitleaks-results.sarif`
+- **HEAD final da correção:** [`eb768dcd69756500694b2d4485ae653921ea8a7b`](https://github.com/samsilveira/GC_ComplianceEmDevOps/commit/eb768dcd69756500694b2d4485ae653921ea8a7b)
+- **Execução verde do HEAD final:** [run `31970482482`](https://github.com/samsilveira/GC_ComplianceEmDevOps/actions/runs/31970482482), com os cinco jobs então existentes aprovados
 - **Escopo:** somente `evidence/EVID-04.md` e `evidence/README.md`; a implementação funcional validada no PR #18 não foi alterada.
 
 ## 5. Exceções e Limitações
