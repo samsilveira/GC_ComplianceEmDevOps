@@ -42,7 +42,7 @@ Consulte o [Guia de Contribuição (CONTRIBUTING.md)](CONTRIBUTING.md) para deta
 - **Rastreabilidade:** Git, pull requests, tags, changelog e GitHub Releases
 - **Documentação:** Markdown
 
-As versões efetivamente adotadas serão fixadas nos arquivos de dependências e registradas na documentação técnica para tornar o experimento reproduzível.
+As versões adotadas estão fixadas nos arquivos de dependências e registradas na documentação técnica para tornar o experimento reproduzível.
 
 ## Políticas de conformidade
 
@@ -105,7 +105,7 @@ As evidências serão organizadas em `evidence/` e também publicadas como artef
 
 As dependências necessárias para executar a API são instaladas a partir de `requirements.txt`. As ferramentas de desenvolvimento, qualidade e auditoria estão fixadas em `requirements-dev.txt`.
 
-## Estrutura planejada
+## Estrutura do repositório
 
 ```text
 .
@@ -123,21 +123,22 @@ As dependências necessárias para executar a API são instaladas a partir de `r
 │   ├── 05-como-executar.md
 │   ├── 06-evidencias.md
 │   ├── 07-auditoria.md
-│   └── 08-referencias.md
+│   ├── 08-referencias.md
+│   └── 09-reproducao-independente.md
 ├── evidence/
 │   └── README.md
 ├── policies/
 │   └── policy.md
 ├── scripts/
-│   ├── check_policies.py
-│   └── generate_evidence.py
+│   └── check_policies.py
 ├── tests/
-│   ├── __init__.py
-│   └── test_main.py
+│   ├── test_api.py
+│   └── test_check_policies.py
 ├── .gitignore
 ├── CHANGELOG.md
 ├── LICENSE
-├── Makefile
+├── pyproject.toml
+├── pytest.ini
 ├── README.md
 ├── requirements.txt
 └── requirements-dev.txt
@@ -145,9 +146,9 @@ As dependências necessárias para executar a API são instaladas a partir de `r
 
 ## Navegação na documentação
 
-À medida que os artefatos forem produzidos, a pasta `docs/` será o ponto de entrada para a documentação aprofundada:
+A pasta `docs/` é o ponto de entrada para a documentação aprofundada:
 
-| Documento | Conteúdo esperado |
+| Documento | Conteúdo |
 | --- | --- |
 | `docs/01-visao-geral.md` | Contexto, problema, objetivos e escopo |
 | `docs/02-arquitetura.md` | Componentes e fluxo do experimento |
@@ -157,10 +158,11 @@ As dependências necessárias para executar a API são instaladas a partir de `r
 | `docs/06-evidencias.md` | Resultados, imagens, vídeos e artefatos |
 | `docs/07-auditoria.md` | Rastreabilidade de alterações, decisões e releases |
 | `docs/08-referencias.md` | Referências técnicas e bibliográficas |
+| `docs/09-reproducao-independente.md` | Registro do teste de reprodução independente |
 
 ## Instalação e execução
 
-> **Estado atual:** a API mínima, a suíte de testes, o lint e a auditoria de dependências já podem ser executados com os comandos abaixo. A checagem de políticas será habilitada na respectiva issue.
+> **Estado atual:** a API, os testes e todos os controles automatizados do MVP estão implementados. A governança de release (POL-06) permanece manual até a ISSUE-10.
 
 ```sh
 git clone https://github.com/samsilveira/GC_ComplianceEmDevOps.git
@@ -198,7 +200,7 @@ ruff check .
 pip-audit --requirement requirements.txt --strict
 ```
 
-O scan de segredos roda automaticamente no GitHub Actions. O comando abaixo será habilitado na ISSUE-07:
+O scan de segredos roda automaticamente no GitHub Actions. A política de estrutura e arquivos proibidos pode ser verificada localmente com:
 
 ```sh
 python scripts/check_policies.py
@@ -213,7 +215,7 @@ python scripts/check_policies.py
 5. Em uma demonstração de falha controlada, baixe o artefato publicado pelo Gitleaks e vincule a execução em `evidence/EVID-03.md`.
 6. No job de testes, consulte o step **Executar testes e gerar relatório JUnit** e baixe o artefato `relatorio-junit-<run-id>` ao final da execução.
 7. Baixe os artefatos `relatorio-ruff-<run-id>` e `relatorio-pip-audit-<run-id>` e confirme que os relatórios JSON correspondem ao mesmo identificador da execução.
-8. A validação de políticas será incorporada na ISSUE-07.
+8. Consulte o job **Verificação de Políticas do Repositório** para validar os controles de estrutura e arquivos proibidos.
 
 ## Organização do trabalho
 

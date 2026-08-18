@@ -53,6 +53,15 @@ python -m pip install -r requirements-dev.txt
 flask --app app.main run
 ```
 
+Em outro terminal, valide as respostas:
+
+```bash
+curl http://127.0.0.1:5000/
+curl http://127.0.0.1:5000/health
+```
+
+São esperados objetos JSON com `version: "1.0.0"` na primeira rota e `status: "up"` e `healthy: true` na segunda.
+
 ### 2.5 Executar os Testes
 
 ```bash
@@ -105,15 +114,32 @@ pip-audit --requirement requirements.txt --strict \
 
 As violações das regras Ruff configuradas, as vulnerabilidades conhecidas e as falhas de coleta do pip-audit são bloqueantes. Nenhum código de saída é suprimido. Não existem exceções vigentes para a ISSUE-06.
 
-### 2.8 Executar os Controles Posteriores
-
-Após a integração da ISSUE-07, a checagem de políticas poderá ser executada com:
+### 2.8 Executar as políticas internas
 
 ```bash
-
 python scripts/check_policies.py
 ```
+
+O comando deve imprimir `[ CONFORME ]` e encerrar com código zero. Ele exige `README.md`, `CHANGELOG.md` e `docs/04-politicas.md`, e rejeita arquivos chamados `.env` ou `credentials.json` fora dos metadados `.git`.
 
 ### 2.9 Verificar os Artefatos no GitHub Actions
 
 No workflow **Compliance Pipeline**, verifique os jobs **Qualidade de Código com Ruff** e **Auditoria de Dependências com pip-audit**. Ao final de cada execução não cancelada, baixe os artefatos `relatorio-ruff-<run-id>` e `relatorio-pip-audit-<run-id>`, retidos por 14 dias.
+
+## 3. Versões reproduzíveis
+
+| Item | Versão |
+| --- | --- |
+| Python local mínimo | 3.10 |
+| Python de referência no CI | 3.12 |
+| Flask | 3.1.3 |
+| Werkzeug | 3.1.6 |
+| pytest | 8.0.0 |
+| Ruff | 0.16.3 |
+| pip-audit | 2.10.1 |
+
+As fontes de verdade são `requirements.txt`, `requirements-dev.txt`, `pyproject.toml` e `.github/workflows/compliance.yml`.
+
+## 4. Reprodução verificada
+
+O ensaio independente, incluindo ambiente, comandos, resultados e limitações, está em [`09-reproducao-independente.md`](09-reproducao-independente.md).

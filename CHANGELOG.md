@@ -12,3 +12,8 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - Configuração inicial do pipeline de CI/CD (GitHub Actions).
 - Script de verificação de políticas de conformidade (Issue #7).
 - Testes iniciais da API e do sistema.
+- Documentação técnica completa e registro da reprodução independente da ISSUE-09.
+
+### Alterado
+
+- README, arquitetura, políticas, evidências, auditoria e referências alinhados ao comportamento atual do projeto.

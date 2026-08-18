@@ -14,6 +14,9 @@ Este documento lista as referências teóricas, documentações oficiais e norma
 - **pip-audit:** [https://github.com/pypa/pip-audit](https://github.com/pypa/pip-audit)
 - **Semantic Versioning 2.0.0:** [https://semver.org/](https://semver.org/)
 - **Conventional Commits 1.0.0:** [https://www.conventionalcommits.org/](https://www.conventionalcommits.org/)
+- **Formato de requirements do pip:** [https://pip.pypa.io/en/stable/reference/requirements-file-format/](https://pip.pypa.io/en/stable/reference/requirements-file-format/)
+- **JUnit XML no pytest:** [https://docs.pytest.org/en/stable/how-to/output.html#creating-junitxml-format-files](https://docs.pytest.org/en/stable/how-to/output.html#creating-junitxml-format-files)
+- **Artefatos no GitHub Actions:** [https://docs.github.com/actions/using-workflows/storing-workflow-data-as-artifacts](https://docs.github.com/actions/using-workflows/storing-workflow-data-as-artifacts)
 
 ---
 
@@ -21,3 +24,7 @@ Este documento lista as referências teóricas, documentações oficiais e norma
 
 - HUMBLE, Jez; FARLEY, David. *Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation*. Addison-Wesley, 2010.
 - KIM, Gene et al. *The DevOps Handbook: How to Create World-Class Agility, Reliability, and Security in Technology Organizations*. IT Revolution Press, 2016.
+
+## 3. Delimitação de uso
+
+As referências sustentam as ferramentas e práticas adotadas, mas o experimento não declara certificação ISO, conformidade legal com LGPD/GDPR ou equivalência a uma auditoria independente formal.

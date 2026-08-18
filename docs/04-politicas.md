@@ -37,4 +37,4 @@ Para garantir eficiência sem perder o controle de qualidade, nossas políticas 
 ---
 
 > [!NOTE]
-> O detalhamento e a implementação do script validador são conduzidos na **ISSUE-07** sob responsabilidade de Sabrina Alencar (P4).
+> O script validador da **ISSUE-07** já está implementado e integrado ao pipeline. A automação da POL-06 permanece planejada para a ISSUE-10.
