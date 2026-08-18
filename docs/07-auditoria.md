@@ -15,6 +15,22 @@ Todas as mudanças do projeto são vinculadas a:
 
 ---
 
-## 2. Ciclo de Auditoria da Release `v1.0.0`
+## 2. Controles e fontes de auditoria
 
-*A ser consolidado na ISSUE-10 por Sabrina Alencar (P4) e Sebastião Soares (P7).*
+| Informação | Fonte |
+| --- | --- |
+| autoria e conteúdo da alteração | histórico Git |
+| motivação e aceite | issue e pull request |
+| revisão humana | review do pull request |
+| resultado automatizado | run do GitHub Actions |
+| relatórios técnicos | artefatos JUnit, Ruff e pip-audit |
+| demonstrações controladas | `evidence/EVID-*.md` |
+| relação política-evidência | `evidence/POLICY-MAP.md` |
+
+## 3. Retenção e integridade
+
+Os artefatos têm retenção de 14 dias. Os documentos locais registram URLs, números de execução e SHAs, relacionando o resultado ao commit mesmo depois da expiração. Segredos detectados não são reproduzidos; as demonstrações usam somente valores sintéticos.
+
+## 4. Estado da release `v1.0.0`
+
+A release ainda não foi publicada. A consolidação de tag, notas, changelog e evidência `EVID-06` pertence à ISSUE-10. Até lá, o `CHANGELOG.md` mantém as alterações em `Unreleased`, e a POL-06 permanece um controle humano não automatizado.

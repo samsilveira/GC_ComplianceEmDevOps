@@ -52,7 +52,3 @@ Este documento justifica as tecnologias adotadas, suas vantagens e suas limitaç
 - O resultado representa a base de vulnerabilidades disponível no momento da execucao e nao garante ausencia de falhas ainda desconhecidas ou ainda nao publicadas.
 - A auditoria depende de conectividade com o indice e com o servico de vulnerabilidades. Como `--strict` está ativo, indisponibilidade que impeça a coleta nao produz aprovacao silenciosa.
 - Dependencias de desenvolvimento nao fazem parte da politica POL-04; o arquivo auditado é explicitamente `requirements.txt`, que representa as dependencias de execucao da API.
-- **Falsos positivos:** o Gitleaks trabalha com regras baseadas em padrões e entropia, portanto strings sintéticas ou fixtures de teste podem ser sinalizadas se se parecerem com credenciais reais.
-- **Exceções nesta issue:** nenhuma allowlist ou `.gitleaksignore` foi adicionada, para evitar mascarar vazamentos durante a demonstração da política.
-- **Tratamento recomendado para exceções futuras:** qualquer falso positivo deve ser revisado manualmente e, se confirmado, documentado com justificativa antes de incluir uma exclusão versionada.
-- **Cobertura:** `fetch-depth: 0` disponibiliza o histórico ao runner, enquanto a action seleciona o intervalo de commits de acordo com o evento (`push` ou `pull_request`). Essa configuração verifica as alterações selecionadas pela action, mas não deve ser apresentada como uma auditoria periódica de todo o histórico nem como proteção para segredos injetados apenas em runtime fora do Git.
