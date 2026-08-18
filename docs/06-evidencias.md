@@ -9,8 +9,8 @@ A trilha auditável está centralizada no
 
 O vínculo explícito entre as políticas, seus bloqueios e as respectivas
 execuções está no
-[`evidence/POLICY-MAP.md`](../evidence/POLICY-MAP.md). As capturas documentais
-para substituir uma demonstração ao vivo estão em
+[`evidence/POLICY-MAP.md`](../evidence/POLICY-MAP.md). O roteiro documental
+para substituir uma demonstração ao vivo está em
 [`evidence/contingency/README.md`](../evidence/contingency/README.md).
 
 Os artefatos binários e relatórios gerados pelo pipeline permanecem associados
