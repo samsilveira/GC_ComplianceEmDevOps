@@ -130,7 +130,6 @@ As dependências necessárias para executar a API são instaladas a partir de `r
 ├── policies/
 │   └── policy.md
 ├── scripts/
-│   ├── check_policies.py
 │   └── check_policies.py
 ├── tests/
 │   ├── test_api.py

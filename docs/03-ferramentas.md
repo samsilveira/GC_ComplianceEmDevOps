@@ -24,31 +24,31 @@ Este documento justifica as tecnologias adotadas, suas vantagens e suas limitaç
 - **Configuração versionada no repositório:** [`.gitleaks.toml`](../.gitleaks.toml) com `useDefault = true`, preservando as regras padrão do Gitleaks e adicionando apenas a regra `gc-demo-secret` para a demonstração segura da ISSUE-05.
 - **Saídas de auditoria:** resumo no job do GitHub Actions e upload do artefato de relatório do Gitleaks quando houver detecção.
 
-## 3. Falsos Positivos, Excecoes e Limitacoes
+## 3. Falsos Positivos, Exceções e Limitações
 
-- **Falsos positivos:** o Gitleaks trabalha com regras baseadas em padroes e entropia, portanto strings sinteticas ou fixtures de teste podem ser sinalizadas se se parecerem com credenciais reais.
-- **Excecoes nesta issue:** nenhuma allowlist ou `.gitleaksignore` foi adicionada, para evitar mascarar vazamentos durante a demonstracao da politica.
-- **Tratamento recomendado para excecoes futuras:** qualquer falso positivo deve ser revisado manualmente e, se confirmado, documentado com justificativa antes de incluir uma exclusao versionada.
-- **Cobertura:** o job varre o checkout com `fetch-depth: 0`, cobrindo o conteudo versionado e o historico disponibilizado ao runner, mas nao substitui protecoes para segredos injetados apenas em runtime fora do Git.
+- **Falsos positivos:** o Gitleaks trabalha com regras baseadas em padrões e entropia, portanto strings sintéticas ou fixtures de teste podem ser sinalizadas se se parecerem com credenciais reais.
+- **Exceções nesta issue:** nenhuma allowlist ou `.gitleaksignore` foi adicionada, para evitar mascarar vazamentos durante a demonstração da política.
+- **Tratamento recomendado para exceções futuras:** qualquer falso positivo deve ser revisado manualmente e, se confirmado, documentado com justificativa antes de incluir uma exclusão versionada.
+- **Cobertura:** o job varre o checkout com `fetch-depth: 0`, cobrindo o conteúdo versionado e o histórico disponibilizado ao runner, mas não substitui proteções para segredos injetados apenas em runtime fora do Git.
 
 ## 4. Registro do Ruff e do pip-audit
 
-- **Versoes adotadas:** `ruff==0.16.3` e `pip-audit==2.10.1`, fixadas em [`requirements-dev.txt`](../requirements-dev.txt).
-- **Configuracao do Ruff:** [`pyproject.toml`](../pyproject.toml) fixa a versao requerida, Python minimo `3.10`, limite de 88 caracteres e as familias de regras `E4`, `E7`, `E9`, `F` e `I`.
+- **Versões adotadas:** `ruff==0.16.3` e `pip-audit==2.10.1`, fixadas em [`requirements-dev.txt`](../requirements-dev.txt).
+- **Configuração do Ruff:** [`pyproject.toml`](../pyproject.toml) fixa a versão requerida, Python mínimo `3.10`, limite de 88 caracteres e as famílias de regras `E4`, `E7`, `E9`, `F` e `I`.
 - **Escopo do Ruff:** todos os arquivos Python encontrados a partir da raiz por `ruff check .`.
-- **Escopo do pip-audit:** somente as dependencias de execucao declaradas em [`requirements.txt`](../requirements.txt), usando `--strict` para também bloquear falhas na coleta ou resolucao das dependencias.
-- **Saidas de auditoria:** os jobs geram `reports/ruff.json` e `reports/pip-audit.json`, publicados como artefatos por 14 dias.
+- **Escopo do pip-audit:** somente as dependências de execução declaradas em [`requirements.txt`](../requirements.txt), usando `--strict` para também bloquear falhas na coleta ou resolução das dependências.
+- **Saídas de auditoria:** os jobs geram `reports/ruff.json` e `reports/pip-audit.json`, publicados como artefatos por 14 dias.
 
-## 5. Resultados Bloqueantes e Excecoes da ISSUE-06
+## 5. Resultados Bloqueantes e Exceções da ISSUE-06
 
-- Qualquer regra Ruff selecionada que resulte em codigo de saida diferente de zero bloqueia o pipeline.
-- Qualquer vulnerabilidade conhecida retornada pelo pip-audit bloqueia o pipeline. Uma falha de coleta ou resolucao também bloqueia por causa de `--strict`.
-- Os jobs nao usam `continue-on-error` e os comandos nao suprimem codigos de saida.
-- **Excecoes vigentes em 16/08/2026:** nenhuma. Nao há `ignore`, `per-file-ignores` nem `--ignore-vuln` configurados para estes controles.
-- Uma excecao futura somente poderá ser adicionada de forma explícita, registrando identificador da regra ou vulnerabilidade, justificativa, responsavel e data limite de revisao. A exclusao deverá aparecer tanto na configuracao versionada quanto neste documento; excecoes sem prazo nao sao aceitas.
+- Qualquer regra Ruff selecionada que resulte em código de saída diferente de zero bloqueia o pipeline.
+- Qualquer vulnerabilidade conhecida retornada pelo pip-audit bloqueia o pipeline. Uma falha de coleta ou resolução também bloqueia por causa de `--strict`.
+- Os jobs não usam `continue-on-error` e os comandos não suprimem códigos de saída.
+- **Exceções vigentes em 16/08/2026:** nenhuma. Não há `ignore`, `per-file-ignores` nem `--ignore-vuln` configurados para estes controles.
+- Uma exceção futura somente poderá ser adicionada de forma explícita, registrando identificador da regra ou vulnerabilidade, justificativa, responsável e data limite de revisão. A exclusão deverá aparecer tanto na configuração versionada quanto neste documento; exceções sem prazo não são aceitas.
 
-## 6. Limitacoes da Auditoria de Dependencias
+## 6. Limitações da Auditoria de Dependências
 
-- O resultado representa a base de vulnerabilidades disponível no momento da execucao e nao garante ausencia de falhas ainda desconhecidas ou ainda nao publicadas.
-- A auditoria depende de conectividade com o indice e com o servico de vulnerabilidades. Como `--strict` está ativo, indisponibilidade que impeça a coleta nao produz aprovacao silenciosa.
-- Dependencias de desenvolvimento nao fazem parte da politica POL-04; o arquivo auditado é explicitamente `requirements.txt`, que representa as dependencias de execucao da API.
+- O resultado representa a base de vulnerabilidades disponível no momento da execução e não garante ausência de falhas ainda desconhecidas ou ainda não publicadas.
+- A auditoria depende de conectividade com o índice e com o serviço de vulnerabilidades. Como `--strict` está ativo, indisponibilidade que impeça a coleta não produz aprovação silenciosa.
+- Dependências de desenvolvimento não fazem parte da política POL-04; o arquivo auditado é explicitamente `requirements.txt`, que representa as dependências de execução da API.
