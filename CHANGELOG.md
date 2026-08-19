@@ -41,8 +41,9 @@ Nenhuma alteração registrada.
   dados, implantação em produção ou observabilidade.
 - O pip-audit depende das vulnerabilidades publicadas e da conectividade no
   instante da execução.
-- Os artefatos do GitHub Actions têm retenção de 14 dias; os registros Markdown
-  preservam os identificadores e resultados essenciais.
+- Os relatórios JUnit, Ruff e pip-audit têm retenção de 14 dias; o SARIF do
+  Gitleaks usa a retenção da ação, observada em 90 dias na candidata. Os
+  registros Markdown preservam os identificadores e resultados essenciais.
 - A criação da tag e da GitHub Release é um controle humano, validado pela
   trilha descrita em `docs/07-auditoria.md`.
 

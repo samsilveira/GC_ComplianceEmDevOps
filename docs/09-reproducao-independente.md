@@ -41,6 +41,10 @@ Todos os comandos terminaram com sucesso. O ensaio foi executado por um agente i
 
 ## Problemas e limitações
 
-O pip-audit consulta bases externas; sua execução exige conectividade. O resultado retrata as vulnerabilidades conhecidas na data do teste. Artefatos do GitHub Actions devem ser consultados antes do fim da retenção de 14 dias.
+O pip-audit consulta bases externas; sua execução exige conectividade. O
+resultado retrata as vulnerabilidades conhecidas na data do teste. Os relatórios
+JUnit, Ruff e pip-audit devem ser consultados antes do fim da retenção de 14
+dias; o SARIF do Gitleaks usa a retenção da ação, observada em 90 dias na
+candidata.
 
 Como `/tmp` e o workspace estavam em sistemas de arquivos diferentes, o clone local precisou da opção `--no-hardlinks`. Isso não afeta clones feitos por HTTPS. A primeira instalação não teve resolução DNS no ambiente restrito; repetida com acesso de rede autorizado, foi concluída sem mudanças nos arquivos de dependências.

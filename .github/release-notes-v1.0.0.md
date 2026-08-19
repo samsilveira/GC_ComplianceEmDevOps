@@ -25,9 +25,10 @@ O detalhamento integral está no [`CHANGELOG.md`](https://github.com/samsilveira
 - O escopo é educacional: não há autenticação, banco de dados, implantação em
   produção ou observabilidade.
 - O pip-audit depende da conectividade e das vulnerabilidades conhecidas no instante da execução.
-- Artefatos do GitHub Actions expiram após 14 dias; os registros Markdown
-  preservam os identificadores essenciais, mas não substituem todo o conteúdo
-  dos relatórios expirados.
+- Os relatórios JUnit, Ruff e pip-audit expiram após 14 dias; o SARIF do
+  Gitleaks usa a retenção da ação, observada em 90 dias na candidata. Os
+  registros Markdown preservam os identificadores essenciais, mas não
+  substituem todo o conteúdo dos relatórios expirados.
 
 ## Reprodução
 
