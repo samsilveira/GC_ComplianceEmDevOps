@@ -1,0 +1,129 @@
+name: Demonstração Controlada de Compliance
+
+run-name: >-
+  DEMO não bloqueante | ${{ inputs.scenario }} | ${{ inputs.demo_id }} |
+  ${{ github.actor }}
+
+'on':
+  workflow_dispatch:
+    inputs:
+      scenario:
+        description: Cenário seguro a demonstrar
+        required: true
+        default: approved
+        type: choice
+        options:
+          - approved
+          - policy_failure
+      demo_id:
+        description: Identificador da sessão para localizar o run
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: demo-compliance-${{ github.repository }}
+  cancel-in-progress: false
+
+env:
+  PYTHON_VERSION: "3.12"
+
+jobs:
+  controlled-policy-demo:
+    name: Demonstração isolada — ${{ inputs.scenario }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v7
+
+      - name: Configurar Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v7
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Preparar cenário em diretório temporário
+        env:
+          DEMO_ROOT: ${{ runner.temp }}/compliance-demo
+          SCENARIO: ${{ inputs.scenario }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mkdir -p "$DEMO_ROOT/docs" reports
+          touch "$DEMO_ROOT/README.md"
+          touch "$DEMO_ROOT/CHANGELOG.md"
+          touch "$DEMO_ROOT/docs/04-politicas.md"
+
+          if [[ "$SCENARIO" == "policy_failure" ]]; then
+            touch "$DEMO_ROOT/.env"
+          fi
+
+      - name: Executar política no cenário isolado
+        id: policy
+        env:
+          DEMO_ROOT: ${{ runner.temp }}/compliance-demo
+          SCENARIO: ${{ inputs.scenario }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          set +e
+          python -c '
+          import os
+          from pathlib import Path
+          from scripts.check_policies import main
+          raise SystemExit(main(Path(os.environ["DEMO_ROOT"])))
+          ' 2>&1 | tee reports/demo-policy.txt
+          policy_status=${PIPESTATUS[0]}
+          set -e
+
+          echo "policy_status=$policy_status" >> "$GITHUB_OUTPUT"
+
+          if [[ "$SCENARIO" == "approved" && "$policy_status" -ne 0 ]]; then
+            echo "O cenário conforme deveria retornar zero." >&2
+            exit 2
+          fi
+
+          if [[ "$SCENARIO" == "policy_failure" && "$policy_status" -ne 1 ]]; then
+            echo "A violação controlada deveria retornar um." >&2
+            exit 2
+          fi
+
+      - name: Registrar resumo da demonstração
+        if: ${{ always() }}
+        env:
+          DEMO_ID: ${{ inputs.demo_id }}
+          POLICY_STATUS: ${{ steps.policy.outputs.policy_status }}
+          SCENARIO: ${{ inputs.scenario }}
+        shell: bash
+        run: |
+          {
+            echo "## Demonstração controlada de compliance"
+            echo
+            echo "- Sessão: \`$DEMO_ID\`"
+            echo "- Cenário: \`$SCENARIO\`"
+            echo "- Diretório avaliado: temporário e isolado"
+            echo "- Código observado: \`${POLICY_STATUS:-indisponível}\`"
+            echo "- Nenhum segredo real, commit ou push foi criado"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Publicar relatório da demonstração
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: >-
+            demo-policy-${{ github.run_id }}-${{ github.run_attempt }}
+          path: reports/demo-policy.txt
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Aplicar bloqueio vermelho esperado
+        if: ${{ inputs.scenario == 'policy_failure' }}
+        shell: bash
+        run: |
+          echo "Falha intencional: a política bloqueou o arquivo .env temporário."
+          exit 1
