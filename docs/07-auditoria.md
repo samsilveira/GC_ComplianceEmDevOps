@@ -27,7 +27,7 @@ preservam os identificadores relevantes após a expiração dos artefatos.
 | políticas como código | PR [#20](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/20) | `b70e38f` | [EVID-05](../evidence/EVID-05.md) |
 | catálogo de evidências | PR [#21](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/21) | `2112592` | [índice](../evidence/README.md) |
 | reprodução independente | PR [#22](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/22) | `8501a7d` | [registro](09-reproducao-independente.md) |
-| release `v1.0.0` | ISSUE [#10](https://github.com/samsilveira/GC_ComplianceEmDevOps/issues/10) e PR [#23](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/23) | a validar pela tag anotada [`v1.0.0`](https://github.com/samsilveira/GC_ComplianceEmDevOps/commit/v1.0.0) | [EVID-06](../evidence/EVID-06.md) e acompanhamento [#24](https://github.com/samsilveira/GC_ComplianceEmDevOps/issues/24) |
+| release `v1.0.0` | ISSUE [#10](https://github.com/samsilveira/GC_ComplianceEmDevOps/issues/10) e PR [#23](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/23) | `745127f` (tag anotada [`v1.0.0`](https://github.com/samsilveira/GC_ComplianceEmDevOps/commit/v1.0.0)) | [EVID-06](../evidence/EVID-06.md) e acompanhamento [#24](https://github.com/samsilveira/GC_ComplianceEmDevOps/issues/24) |
 
 Os SHAs abreviados podem ser expandidos com `git rev-parse <sha>`. A associação
 final não depende do nome da branch: a tag aponta para o commit aprovado.
