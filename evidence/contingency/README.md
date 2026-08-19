@@ -42,3 +42,7 @@ primária; cada cartão aponta para a origem auditável.
 Os cartões não reproduzem logs nem valores detectados, evitando a exposição de
 conteúdo sensível. Antes da apresentação, confirme os links; se o acesso remoto
 falhar, todo o roteiro continua disponível por links relativos.
+
+O procedimento principal, os comandos automatizados e a transição para este
+modo de contingência estão descritos em
+[`docs/10-demonstracao-ao-vivo.md`](../../docs/10-demonstracao-ao-vivo.md).

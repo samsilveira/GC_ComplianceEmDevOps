@@ -100,6 +100,8 @@ As evidências serão organizadas em `evidence/` e também publicadas como artef
 
 - Git
 - Python 3.10 ou superior e `pip` (o pipeline usa Python 3.12 como versão de referência)
+- Go 1.20 ou superior para o menu opcional da demonstração ao vivo
+- GitHub CLI (`gh`) autenticado para consultar ou disparar workflows
 - Acesso a um terminal
 - Conta no GitHub para consultar workflows, artefatos e releases
 
@@ -111,7 +113,8 @@ As dependências necessárias para executar a API são instaladas a partir de `r
 .
 ├── .github/
 │   └── workflows/
-│       └── compliance.yml
+│       ├── compliance.yml
+│       └── demo-compliance.yml
 ├── app/
 │   ├── __init__.py
 │   └── main.py
@@ -124,16 +127,21 @@ As dependências necessárias para executar a API são instaladas a partir de `r
 │   ├── 06-evidencias.md
 │   ├── 07-auditoria.md
 │   ├── 08-referencias.md
-│   └── 09-reproducao-independente.md
+│   ├── 09-reproducao-independente.md
+│   └── 10-demonstracao-ao-vivo.md
 ├── evidence/
 │   └── README.md
 ├── policies/
 │   └── policy.md
 ├── scripts/
-│   └── check_policies.py
+│   ├── check_policies.py
+│   ├── demo_validate.py
+│   ├── github_live_demo.go
+│   └── github_live_demo_test.go
 ├── tests/
 │   ├── test_api.py
-│   └── test_check_policies.py
+│   ├── test_check_policies.py
+│   └── test_demo_validate.py
 ├── .gitignore
 ├── CHANGELOG.md
 ├── LICENSE
@@ -159,6 +167,7 @@ A pasta `docs/` é o ponto de entrada para a documentação aprofundada:
 | `docs/07-auditoria.md` | Rastreabilidade de alterações, decisões e releases |
 | `docs/08-referencias.md` | Referências técnicas e bibliográficas |
 | `docs/09-reproducao-independente.md` | Registro do teste de reprodução independente |
+| `docs/10-demonstracao-ao-vivo.md` | Scripts, workflow isolado e sequência controlada da apresentação |
 
 ## Instalação e execução
 
