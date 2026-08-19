@@ -27,7 +27,7 @@ preservam os identificadores relevantes após a expiração dos artefatos.
 | políticas como código | PR [#20](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/20) | `b70e38f` | [EVID-05](../evidence/EVID-05.md) |
 | catálogo de evidências | PR [#21](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/21) | `2112592` | [índice](../evidence/README.md) |
 | reprodução independente | PR [#22](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/22) | `8501a7d` | [registro](09-reproducao-independente.md) |
-| release `v1.0.0` | ISSUE [#10](https://github.com/samsilveira/GC_ComplianceEmDevOps/issues/10) | resolvido pela tag anotada [`v1.0.0`](https://github.com/samsilveira/GC_ComplianceEmDevOps/commit/v1.0.0) | [EVID-06](../evidence/EVID-06.md) |
+| release `v1.0.0` | ISSUE [#10](https://github.com/samsilveira/GC_ComplianceEmDevOps/issues/10) e PR [#23](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/23) | a validar pela tag anotada [`v1.0.0`](https://github.com/samsilveira/GC_ComplianceEmDevOps/commit/v1.0.0) | [EVID-06](../evidence/EVID-06.md) e acompanhamento [#24](https://github.com/samsilveira/GC_ComplianceEmDevOps/issues/24) |
 
 Os SHAs abreviados podem ser expandidos com `git rev-parse <sha>`. A associação
 final não depende do nome da branch: a tag aponta para o commit aprovado.
@@ -48,8 +48,10 @@ final não depende do nome da branch: a tag aponta para o commit aprovado.
 
 ## 4. Procedimento controlado da release `v1.0.0`
 
-1. Obter as aprovações de Samuel (P1), Espedito (P5) e Elder (P2) no pull
-   request da branch `chore/release-v1.0.0`.
+1. Obter ao menos uma aprovação no pull request da branch
+   `chore/release-v1.0.0`, conforme o ruleset `main-protect`. Samuel (P1),
+   Espedito (P5) e Elder (P2) permanecem como revisores solicitados, sem exigir
+   que os três concluam a revisão antes do merge.
 2. Confirmar que todos os checks obrigatórios do commit aprovado estão verdes
    e que não há mudanças obrigatórias fora do pull request.
 3. Fazer o merge e aguardar o pipeline verde do commit resultante em `main`.
@@ -75,8 +77,10 @@ final não depende do nome da branch: a tag aponta para o commit aprovado.
      --verify-tag
    ```
 
-7. Executar as verificações de [EVID-06](../evidence/EVID-06.md), registrar os
-   links no fechamento da ISSUE #10 e somente então liberar a ISSUE #11.
+7. Executar as verificações de [EVID-06](../evidence/EVID-06.md), concluir o
+   checklist da [ISSUE #24](https://github.com/samsilveira/GC_ComplianceEmDevOps/issues/24),
+   registrar os links no fechamento da ISSUE #10 e somente então liberar a
+   ISSUE #11.
 
 ## 5. Critérios de congelamento e rollback
 
@@ -88,8 +92,10 @@ uma tag de release não deve ser movida: uma correção exige nova versão SemVe
 
 ## 6. Retenção e integridade
 
-Os artefatos têm retenção de 14 dias. Os documentos locais registram URLs,
-números de execução e SHAs, relacionando o resultado ao commit mesmo depois da
-expiração. Segredos detectados não são reproduzidos; demonstrações usam somente
-valores sintéticos. Links relativos são preferidos para que a documentação
-continue navegável em branches, tags e releases.
+Os relatórios JUnit, Ruff e pip-audit têm retenção configurada de 14 dias. O
+artefato SARIF do Gitleaks usa a retenção da ação, observada em 90 dias na
+execução da candidata. Os documentos locais registram URLs, números de execução
+e SHAs, relacionando o resultado ao commit mesmo depois da expiração. Segredos
+detectados não são reproduzidos; demonstrações usam somente valores sintéticos.
+Links relativos são preferidos para que a documentação continue navegável em
+branches, tags e releases.
