@@ -23,6 +23,7 @@ anteriores; não contêm tokens, credenciais reais ou dados pessoais.
 | `EVID-03` | Detecção de segredos | SARIF redigido e logs do Gitleaks | [registro](EVID-03.md) e [PR #17](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/17) |
 | `EVID-04` | Qualidade e dependências | JSON do Ruff, pip-audit e JUnit | [registro](EVID-04.md), [PR #18](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/18) e [PR #19](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/19) |
 | `EVID-05` | Arquivo proibido (`POL-02`) e governança obrigatória (`POL-05`) | Logs do `check_policies.py` | [registro](EVID-05.md) e [PR #20](https://github.com/samsilveira/GC_ComplianceEmDevOps/pull/20) |
+| `EVID-06` | Release, versão e rastreabilidade (`POL-06` e `POL-07`) | Tag anotada, run da tag, changelog e GitHub Release | [registro](EVID-06.md) e [ISSUE #10](https://github.com/samsilveira/GC_ComplianceEmDevOps/issues/10) |
 
 O [mapeamento entre políticas e evidências](POLICY-MAP.md) explicita qual
 controle cada registro comprova. O [material de contingência](contingency/README.md)

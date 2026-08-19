@@ -15,7 +15,8 @@ Este documento formaliza as políticas de conformidade do experimento e sua resp
 | **POL-03** | Código deve atender às regras de lint configuradas | `ruff check .` | `reports/ruff.json` | Sim |
 | **POL-04** | Dependências em produção não podem ter vulnerabilidades conhecidas | `pip-audit --requirement requirements.txt --strict` | `reports/pip-audit.json` | Sim |
 | **POL-05** | Repositório deve conter documentação e governança obrigatória | `scripts/check_policies.py` + check obrigatório no ruleset `main-protect` | [EVID-05](../evidence/EVID-05.md) + log do job | Sim |
-| **POL-06** | Toda release oficial deve ter tag semântica, notas e changelog | Revisão humana de GitHub Releases + `CHANGELOG.md`; automação prevista na ISSUE-10 | `EVID-06`, a produzir na ISSUE-10 | Não nesta etapa |
+| **POL-06** | Toda release oficial deve ter tag semântica, notas e changelog | Revisão humana, execução do workflow na tag e `CHANGELOG.md` | [EVID-06](../evidence/EVID-06.md) + run da tag | Sim, na publicação |
+| **POL-07** | Cada execução deve produzir evidências consultáveis para auditoria | Logs do Actions, artefatos e registros `EVID-*` | [Catálogo de evidências](../evidence/README.md) | Sim |
 
 ---
 
@@ -31,10 +32,14 @@ Para garantir eficiência sem perder o controle de qualidade, nossas políticas 
 ### O que depende de Revisão Humana (Controles Administrativos)
 - **Aprovação de Pull Requests:** Nenhuma alteração entra na branch `main` (produção) sem a revisão e aprovação (Code Review) da equipe.
 - **Decisões de Arquitetura e Modelagem:** Inclusão de novas ferramentas, aplicação de princípios arquiteturais (como SOLID) ou mudanças em esquemas de banco de dados (como modelagem no SQLite).
-- **Governança de Releases:** Até a implementação da ISSUE-10, a equipe revisa manualmente a tag semântica, as notas da release e o `CHANGELOG.md`.
+- **Governança de Releases:** A equipe revisa manualmente a tag semântica, as
+  notas e o changelog; o workflow executa novamente na tag e vincula o resultado
+  ao SHA entregue.
 - **Tratamento de Falsos Positivos:** Avaliação humana quando as ferramentas de segurança ou qualidade barrarem código seguro por engano.
 
 ---
 
 > [!NOTE]
-> O script validador da **ISSUE-07** já está implementado e integrado ao pipeline. A automação da POL-06 permanece planejada para a ISSUE-10.
+> O script validador da **ISSUE-07** está integrado ao pipeline. A **ISSUE-10**
+> consolida a revisão humana da POL-06 com a execução automática na tag e a
+> evidência permanente `EVID-06`.
