@@ -162,7 +162,9 @@ A pasta `docs/` é o ponto de entrada para a documentação aprofundada:
 
 ## Instalação e execução
 
-> **Estado atual:** a API, os testes e todos os controles automatizados do MVP estão implementados. A governança de release (POL-06) permanece manual até a ISSUE-10.
+> **Estado atual:** a API, os testes e todos os controles automatizados do MVP
+> estão implementados. A governança da release (POL-06) é um controle humano
+> documentado na [trilha de auditoria](docs/07-auditoria.md).
 
 ```sh
 git clone https://github.com/samsilveira/GC_ComplianceEmDevOps.git
@@ -261,11 +263,11 @@ O projeto prioriza um experimento pequeno, funcional e demonstrável em 12 a 15 
 - [x] Estrutura de diretórios inicial e licença (`LICENSE`)
 - [x] Workflow-base no GitHub Actions (`.github/workflows/compliance.yml`)
 - [x] Estrutura de aplicação e testes
-- [ ] Pipeline completo de conformidade
-- [ ] Controles de segurança e dependências
-- [ ] Políticas como código
-- [ ] Documentação técnica completa
-- [ ] Evidências de sucesso, falha e correção
+- [x] Pipeline completo de conformidade
+- [x] Controles de segurança e dependências
+- [x] Políticas como código
+- [x] Documentação técnica completa
+- [x] Evidências de sucesso, falha e correção
 - [ ] Release `v1.0.0`
 - [ ] Apresentação e demonstração final
 

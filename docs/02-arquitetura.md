@@ -46,7 +46,10 @@ secret-scan
 | pip-audit | `requirements.txt` | `reports/pip-audit.json` |
 | pytest | aplicação e testes | `reports/junit.xml` |
 
-Os artefatos são publicados por 14 dias. Os registros Markdown preservam os identificadores de commit e run depois que os artefatos expiram.
+Os relatórios JUnit, Ruff e pip-audit são publicados por 14 dias. O SARIF do
+Gitleaks usa a retenção da ação, observada em 90 dias na candidata. Os registros
+Markdown preservam os identificadores de commit e run depois que os artefatos
+expiram.
 
 ## 4. Aplicação alvo
 

@@ -22,4 +22,8 @@ dados pessoais para o repositório.
 
 Os arquivos `EVID-01` a `EVID-05` são índices permanentes, não cópias dos artefatos temporários. Cada um informa controle, commit, execução, data e resultado. `POLICY-MAP.md` permite partir de uma política e chegar às execuções.
 
-Resultados documentados são aqueles associados a runs existentes. Lacunas são identificadas explicitamente como “não produzidas”. A evidência de release (`EVID-06`) permanece planejada para a ISSUE-10.
+Resultados documentados são aqueles associados a runs existentes. Lacunas são
+identificadas explicitamente como “não produzidas”. A trilha e o procedimento
+de validação da release estão em
+[`EVID-06`](../evidence/EVID-06.md); os links canônicos passam a resolver assim
+que a tag e a GitHub Release `v1.0.0` forem publicadas.
