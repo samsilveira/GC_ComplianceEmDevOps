@@ -9,6 +9,16 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 Nenhuma alteração registrada.
 
+## [1.1.0] - 2026-08-19
+
+### Adicionado
+
+- Ferramenta de validação assistida e suíte de testes (`scripts/demo_validate.py` e `tests/test_demo_validate.py`).
+- Controlador interativo em Go para demonstração do GitHub Actions ao vivo (`scripts/github_live_demo.go`).
+- Workflow de cenários controlados de conformidade (`.github/workflows/demo-compliance.yml`).
+- Guia de demonstração ao vivo e validação assistida (`docs/10-demonstracao-ao-vivo.md`).
+- Validação pós-publicação e consolidação final do registro de auditoria da release `v1.0.0` (`evidence/EVID-06.md`).
+
 ## [1.0.0] - 2026-08-19
 
 ### Adicionado
@@ -47,5 +57,6 @@ Nenhuma alteração registrada.
 - A criação da tag e da GitHub Release é um controle humano, validado pela
   trilha descrita em `docs/07-auditoria.md`.
 
-[Unreleased]: https://github.com/samsilveira/GC_ComplianceEmDevOps/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/samsilveira/GC_ComplianceEmDevOps/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/samsilveira/GC_ComplianceEmDevOps/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/samsilveira/GC_ComplianceEmDevOps/releases/tag/v1.0.0
