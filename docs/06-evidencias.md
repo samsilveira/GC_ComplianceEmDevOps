@@ -25,5 +25,5 @@ Os arquivos `EVID-01` a `EVID-05` são índices permanentes, não cópias dos ar
 Resultados documentados são aqueles associados a runs existentes. Lacunas são
 identificadas explicitamente como “não produzidas”. A trilha e o procedimento
 de validação da release estão em
-[`EVID-06`](../evidence/EVID-06.md); os links canônicos passam a resolver assim
-que a tag e a GitHub Release `v1.0.0` forem publicadas.
+[`EVID-06`](../evidence/EVID-06.md), com links canônicos vinculados à tag e à
+GitHub Release `v1.0.0` publicadas e validadas.
